@@ -16,6 +16,8 @@ html {
 
   min-height: 100%;
 
+  overflow-x: hidden;
+
 }
 
 body {
@@ -30,7 +32,7 @@ body {
 
     radial-gradient(
 
-      circle at 50% 20%,
+      circle at 50% 18%,
 
       #1b170c 0%,
 
@@ -68,7 +70,11 @@ body {
 
 .topbar {
 
+  position: relative;
+
   width: min(100%, 900px);
+
+  min-height: 105px;
 
   margin: 0 auto;
 
@@ -76,27 +82,67 @@ body {
 
   display: flex;
 
-  flex-direction: row;
-
   align-items: flex-start;
 
-  justify-content: space-between;
+  justify-content: center;
 
   direction: rtl;
 
 }
 
+/* =========================
+
+   BRAND SLOGAN
+
+========================= */
+
 .brand-slogan {
+
+  position: relative;
+
+  z-index: 2;
 
   color: #f5f5f5;
 
   font-size: 19px;
 
+  font-weight: 600;
+
   line-height: 1.7;
 
-  text-align: right;
+  text-align: center;
+
+  padding: 10px 20px;
+
+  border: 1px solid #8d6b18;
+
+  border-radius: 18px;
+
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      rgba(35, 30, 16, .96),
+
+      rgba(12, 11, 8, .96)
+
+    );
+
+  box-shadow:
+
+    0 0 25px rgba(212, 165, 45, .08);
+
+  backdrop-filter: blur(10px);
 
 }
+
+/* =========================
+
+   PROFILE BUTTON
+
+========================= */
 
 .icon-btn {
 
@@ -106,13 +152,25 @@ body {
 
   top: 28px;
 
+  z-index: 10;
+
   width: 76px;
 
   height: 76px;
 
   border-radius: 50%;
 
-  background: transparent;
+  background:
+
+    radial-gradient(
+
+      circle,
+
+      rgba(35, 30, 15, .9),
+
+      rgba(5, 5, 5, .8)
+
+    );
 
   border: 2px solid #d7a927;
 
@@ -126,7 +184,37 @@ body {
 
   justify-content: center;
 
+  cursor: pointer;
+
+  transition:
+
+    transform .2s ease,
+
+    background .2s ease,
+
+    box-shadow .2s ease;
+
 }
+
+.icon-btn:hover {
+
+  box-shadow:
+
+    0 0 20px rgba(244, 199, 68, .15);
+
+}
+
+.icon-btn:active {
+
+  transform: scale(.92);
+
+}
+
+/* =========================
+
+   MENU BUTTON
+
+========================= */
 
 .menu-btn {
 
@@ -135,6 +223,8 @@ body {
   right: 24px;
 
   top: 35px;
+
+  z-index: 10;
 
   width: 55px;
 
@@ -148,9 +238,13 @@ body {
 
   flex-direction: column;
 
+  align-items: center;
+
   justify-content: space-around;
 
   padding: 8px;
+
+  cursor: pointer;
 
 }
 
@@ -166,6 +260,18 @@ body {
 
   background: #f0c03d;
 
+  transition:
+
+    transform .2s ease,
+
+    opacity .2s ease;
+
+}
+
+.menu-btn:active span {
+
+  transform: scaleX(.85);
+
 }
 
 /* =========================
@@ -180,7 +286,11 @@ body {
 
   margin: 0 auto;
 
-  padding: 50px 22px 40px;
+  padding:
+
+    40px 22px
+
+    50px;
 
   direction: rtl;
 
@@ -204,9 +314,15 @@ body {
 
   align-items: center;
 
-  margin-top: 40px;
+  margin-top: 25px;
 
 }
+
+/* =========================
+
+   LOGO
+
+========================= */
 
 .logo {
 
@@ -228,7 +344,9 @@ body {
 
   font-family: Georgia, serif;
 
-  font-size: clamp(80px, 22vw, 150px);
+  font-size:
+
+    clamp(80px, 22vw, 150px);
 
   font-weight: 800;
 
@@ -244,7 +362,9 @@ body {
 
   font-family: Arial, sans-serif;
 
-  font-size: clamp(85px, 23vw, 155px);
+  font-size:
+
+    clamp(85px, 23vw, 155px);
 
   font-weight: 900;
 
@@ -254,7 +374,15 @@ body {
 
 }
 
+/* =========================
+
+   SPARKLE
+
+========================= */
+
 .sparkle {
+
+  position: relative;
 
   color: #f4c23d;
 
@@ -262,7 +390,11 @@ body {
 
   margin-top: 30px;
 
-  position: relative;
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
 
 }
 
@@ -280,7 +412,17 @@ body {
 
   top: 50%;
 
-  background: #a77e1e;
+  background:
+
+    linear-gradient(
+
+      to left,
+
+      transparent,
+
+      #a77e1e
+
+    );
 
 }
 
@@ -294,23 +436,47 @@ body {
 
   left: 45px;
 
-}
+  background:
 
-.subtitle {
+    linear-gradient(
 
-  color: #d8d8d8;
+      to right,
 
-  font-size: clamp(20px, 5vw, 30px);
+      transparent,
 
-  margin-top: 30px;
+      #a77e1e
 
-  text-align: center;
+    );
 
 }
 
 /* =========================
 
-   CHAT
+   SUBTITLE
+
+========================= */
+
+.subtitle {
+
+  color: #d8d8d8;
+
+  font-size:
+
+    clamp(20px, 5vw, 30px);
+
+  margin:
+
+    30px 0 0;
+
+  text-align: center;
+
+  line-height: 1.7;
+
+}
+
+/* =========================
+
+   CHAT BOX
 
 ========================= */
 
@@ -320,23 +486,37 @@ body {
 
   min-height: 85px;
 
-  margin: 35px auto 25px;
+  margin:
 
-  border: 2px solid #8d6b18;
+    35px auto 25px;
+
+  border:
+
+    2px solid #8d6b18;
 
   border-radius: 35px;
 
-  background: rgba(20, 18, 13, .75);
+  background:
+
+    rgba(20, 18, 13, .75);
 
   display: flex;
 
   align-items: center;
 
-  gap: 12px;
+  gap: 8px;
 
-  padding: 10px 12px;
+  padding:
+
+    10px 12px;
 
   direction: rtl;
+
+  box-shadow:
+
+    0 8px 30px rgba(0, 0, 0, .18);
+
+  backdrop-filter: blur(10px);
 
 }
 
@@ -362,13 +542,29 @@ body {
 
   text-align: right;
 
+  direction: rtl;
+
 }
 
 .chat-box input::placeholder {
 
   color: #777;
 
+  opacity: 1;
+
 }
+
+.chat-box input:focus::placeholder {
+
+  opacity: .5;
+
+}
+
+/* =========================
+
+   SEND BUTTON
+
+========================= */
 
 .send-btn {
 
@@ -382,15 +578,57 @@ body {
 
   border-radius: 50%;
 
-  background: #ffd45c;
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      #ffe47b,
+
+      #f4c23d
+
+    );
 
   color: #111;
 
   font-size: 28px;
 
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
   cursor: pointer;
 
+  transition:
+
+    transform .2s ease,
+
+    box-shadow .2s ease;
+
 }
+
+.send-btn:hover {
+
+  box-shadow:
+
+    0 0 20px rgba(244, 194, 61, .18);
+
+}
+
+.send-btn:active {
+
+  transform: scale(.9);
+
+}
+
+/* =========================
+
+   MICROPHONE
+
+========================= */
 
 .mic-btn {
 
@@ -406,9 +644,33 @@ body {
 
   background: transparent;
 
+  color: white;
+
   font-size: 26px;
 
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
   cursor: pointer;
+
+  transition:
+
+    transform .2s ease,
+
+    background .2s ease;
+
+}
+
+.mic-btn:active {
+
+  transform: scale(.9);
+
+  background:
+
+    rgba(255, 212, 92, .08);
 
 }
 
@@ -422,11 +684,15 @@ body {
 
   width: 100%;
 
-  border: 1px solid #252525;
+  border:
+
+    1px solid #252525;
 
   border-radius: 30px;
 
-  background: rgba(18, 18, 18, .9);
+  background:
+
+    rgba(18, 18, 18, .9);
 
   padding: 24px;
 
@@ -442,6 +708,10 @@ body {
 
   margin-bottom: 30px;
 
+  box-shadow:
+
+    0 8px 30px rgba(0, 0, 0, .15);
+
 }
 
 .ai-icon {
@@ -454,7 +724,17 @@ body {
 
   border-radius: 50%;
 
-  background: #f5c544;
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      #ffe06b,
+
+      #eeb934
+
+    );
 
   color: #111;
 
@@ -465,6 +745,14 @@ body {
   justify-content: center;
 
   font-size: 27px;
+
+}
+
+.ai-content {
+
+  min-width: 0;
+
+  flex: 1;
 
 }
 
@@ -504,7 +792,9 @@ body {
 
   display: grid;
 
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns:
+
+    repeat(2, minmax(0, 1fr));
 
   gap: 14px;
 
@@ -516,7 +806,9 @@ body {
 
   min-height: 150px;
 
-  border: 1px solid #292929;
+  border:
+
+    1px solid #292929;
 
   border-radius: 25px;
 
@@ -534,7 +826,9 @@ body {
 
   color: white;
 
-  padding: 18px 10px;
+  padding:
+
+    18px 10px;
 
   font-family: inherit;
 
@@ -550,7 +844,33 @@ body {
 
   cursor: pointer;
 
-  transition: .2s;
+  transition:
+
+    transform .2s ease,
+
+    border-color .2s ease,
+
+    background .2s ease,
+
+    box-shadow .2s ease;
+
+}
+
+.feature:hover {
+
+  border-color: #665116;
+
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      #191919,
+
+      #0b0b0b
+
+    );
 
 }
 
@@ -559,6 +879,10 @@ body {
   transform: scale(.96);
 
   border-color: #d5a92d;
+
+  box-shadow:
+
+    0 0 20px rgba(213, 169, 45, .08);
 
 }
 
@@ -570,6 +894,8 @@ body {
 
   margin-bottom: 8px;
 
+  line-height: 1.2;
+
 }
 
 .feature strong {
@@ -578,6 +904,8 @@ body {
 
   margin-bottom: 5px;
 
+  font-weight: 700;
+
 }
 
 .feature small {
@@ -585,6 +913,8 @@ body {
   color: #999;
 
   font-size: 14px;
+
+  line-height: 1.5;
 
 }
 
@@ -618,7 +948,9 @@ body {
 
   font-size: 30px;
 
-  margin: 10px 0;
+  margin:
+
+    10px 0;
 
 }
 
@@ -628,25 +960,67 @@ body {
 
   font-size: 20px;
 
+  margin:
+
+    0 0 20px;
+
+  line-height: 1.7;
+
 }
 
 .pro button {
 
-  border: 1px solid #d4a52d;
+  border:
 
-  background: #f2c344;
+    1px solid #d4a52d;
+
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      #ffe06b,
+
+      #f2c344
+
+    );
 
   color: #111;
 
   border-radius: 18px;
 
-  padding: 12px 28px;
+  padding:
+
+    12px 28px;
 
   font-family: inherit;
 
   font-weight: 700;
 
   font-size: 16px;
+
+  cursor: pointer;
+
+  transition:
+
+    transform .2s ease,
+
+    box-shadow .2s ease;
+
+}
+
+.pro button:hover {
+
+  box-shadow:
+
+    0 0 20px rgba(242, 195, 68, .15);
+
+}
+
+.pro button:active {
+
+  transform: scale(.94);
 
 }
 
@@ -670,15 +1044,27 @@ body {
 
   height: 105px;
 
-  background: rgba(5, 5, 5, .96);
+  background:
 
-  border-top: 1px solid #222;
+    rgba(5, 5, 5, .96);
 
-  backdrop-filter: blur(15px);
+  border-top:
+
+    1px solid #222;
+
+  backdrop-filter:
+
+    blur(15px);
+
+  -webkit-backdrop-filter:
+
+    blur(15px);
 
   display: grid;
 
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns:
+
+    repeat(5, 1fr);
 
   direction: rtl;
 
@@ -706,6 +1092,12 @@ body {
 
   cursor: pointer;
 
+  transition:
+
+    color .2s ease,
+
+    transform .2s ease;
+
 }
 
 .nav-item span {
@@ -719,6 +1111,20 @@ body {
 .nav-item small {
 
   font-size: 13px;
+
+  line-height: 1.4;
+
+}
+
+.nav-item:hover {
+
+  color: #aaa;
+
+}
+
+.nav-item:active {
+
+  transform: scale(.9);
 
 }
 
@@ -744,25 +1150,49 @@ body {
 
   left: 50%;
 
-  transform: translateX(-50%) translateY(20px);
+  transform:
 
-  background: #f0c23e;
+    translateX(-50%)
+
+    translateY(20px);
+
+  background:
+
+    #f0c23e;
 
   color: #111;
 
-  padding: 12px 22px;
+  padding:
+
+    12px 22px;
 
   border-radius: 20px;
 
   font-size: 15px;
 
+  font-family: inherit;
+
+  font-weight: 600;
+
   opacity: 0;
 
   pointer-events: none;
 
-  transition: .3s;
+  transition:
+
+    opacity .3s ease,
+
+    transform .3s ease;
 
   white-space: nowrap;
+
+  max-width:
+
+    calc(100vw - 30px);
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
 
 }
 
@@ -770,7 +1200,11 @@ body {
 
   opacity: 1;
 
-  transform: translateX(-50%) translateY(0);
+  transform:
+
+    translateX(-50%)
+
+    translateY(0);
 
 }
 
@@ -784,7 +1218,25 @@ body {
 
   .topbar {
 
-    padding: 22px 18px 0;
+    width: 100%;
+
+    min-height: 95px;
+
+    padding:
+
+      20px 18px 0;
+
+  }
+
+  .brand-slogan {
+
+    font-size: 16px;
+
+    padding:
+
+      8px 15px;
+
+    border-radius: 15px;
 
   }
 
@@ -810,11 +1262,13 @@ body {
 
     width: 48px;
 
+    height: 45px;
+
   }
 
-  .brand-slogan {
+  .menu-btn span {
 
-    font-size: 16px;
+    height: 4px;
 
   }
 
@@ -824,17 +1278,13 @@ body {
 
     padding:
 
-      45px
-
-      18px
-
-      35px;
+      35px 18px 35px;
 
   }
 
   .hero {
 
-    margin-top: 45px;
+    margin-top: 35px;
 
   }
 
@@ -848,11 +1298,43 @@ body {
 
     font-size: 92px;
 
+    margin-top: 18px;
+
+  }
+
+  .sparkle {
+
+    font-size: 27px;
+
+    margin-top: 27px;
+
+  }
+
+  .sparkle::before,
+
+  .sparkle::after {
+
+    width: 95px;
+
+  }
+
+  .sparkle::before {
+
+    right: 38px;
+
+  }
+
+  .sparkle::after {
+
+    left: 38px;
+
   }
 
   .subtitle {
 
     font-size: 21px;
+
+    margin-top: 25px;
 
   }
 
@@ -864,11 +1346,15 @@ body {
 
     padding: 7px;
 
+    gap: 3px;
+
   }
 
   .chat-box input {
 
     font-size: 15px;
+
+    height: 54px;
 
   }
 
@@ -877,6 +1363,8 @@ body {
     width: 54px;
 
     height: 54px;
+
+    font-size: 25px;
 
   }
 
@@ -896,6 +1384,8 @@ body {
 
     border-radius: 24px;
 
+    gap: 13px;
+
   }
 
   .ai-icon {
@@ -904,11 +1394,15 @@ body {
 
     height: 50px;
 
+    font-size: 23px;
+
   }
 
   .ai-message p {
 
     font-size: 16px;
+
+    line-height: 1.8;
 
   }
 
@@ -924,6 +1418,16 @@ body {
 
     border-radius: 22px;
 
+    padding:
+
+      15px 8px;
+
+  }
+
+  .feature-icon {
+
+    font-size: 31px;
+
   }
 
   .feature strong {
@@ -935,6 +1439,24 @@ body {
   .feature small {
 
     font-size: 12px;
+
+  }
+
+  .pro {
+
+    margin-top: 45px;
+
+  }
+
+  .pro h2 {
+
+    font-size: 27px;
+
+  }
+
+  .pro p {
+
+    font-size: 17px;
 
   }
 
@@ -956,11 +1478,65 @@ body {
 
   }
 
+  .toast {
+
+    bottom: 110px;
+
+    font-size: 14px;
+
+    padding:
+
+      11px 18px;
+
+  }
+
 }
 
-/* SMALL PHONES */
+/* =========================
+
+   SMALL PHONES
+
+========================= */
 
 @media (max-width: 380px) {
+
+  .topbar {
+
+    padding-left: 12px;
+
+    padding-right: 12px;
+
+  }
+
+  .brand-slogan {
+
+    font-size: 14px;
+
+    padding:
+
+      7px 12px;
+
+  }
+
+  .icon-btn {
+
+    left: 12px;
+
+    width: 54px;
+
+    height: 54px;
+
+    font-size: 21px;
+
+  }
+
+  .menu-btn {
+
+    right: 12px;
+
+    width: 44px;
+
+  }
 
   .main {
 
@@ -982,6 +1558,18 @@ body {
 
   }
 
+  .subtitle {
+
+    font-size: 19px;
+
+  }
+
+  .chat-box input {
+
+    font-size: 14px;
+
+  }
+
   .features {
 
     gap: 9px;
@@ -991,6 +1579,106 @@ body {
   .feature {
 
     min-height: 125px;
+
+    border-radius: 19px;
+
+  }
+
+  .feature strong {
+
+    font-size: 15px;
+
+  }
+
+  .feature small {
+
+    font-size: 11px;
+
+  }
+
+  .nav-item span {
+
+    font-size: 22px;
+
+  }
+
+  .nav-item small {
+
+    font-size: 10px;
+
+  }
+
+}
+
+/* =========================
+
+   VERY SMALL WIDTH
+
+========================= */
+
+@media (max-width: 330px) {
+
+  .icon-btn {
+
+    width: 48px;
+
+    height: 48px;
+
+    font-size: 19px;
+
+  }
+
+  .menu-btn {
+
+    width: 40px;
+
+    height: 42px;
+
+  }
+
+  .menu-btn span {
+
+    height: 3px;
+
+  }
+
+  .brand-slogan {
+
+    font-size: 13px;
+
+  }
+
+  .kurd {
+
+    font-size: 62px;
+
+  }
+
+  .ai {
+
+    font-size: 68px;
+
+  }
+
+  .chat-box {
+
+    border-radius: 24px;
+
+  }
+
+  .send-btn {
+
+    width: 49px;
+
+    height: 49px;
+
+  }
+
+  .mic-btn {
+
+    width: 38px;
+
+    height: 38px;
 
   }
 
