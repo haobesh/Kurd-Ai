@@ -1,104 +1,58 @@
-/* ================= MENU ================= */
+"use strict";
 
-function toggleMenu() {
+// =========================
 
-  const menu = document.getElementById("sideMenu");
+// ELEMENTS
 
-  menu.classList.toggle("open");
+// =========================
 
-}
+const input = document.getElementById("messageInput");
 
-function closeMenu() {
+const sendBtn = document.getElementById("sendBtn");
 
-  document.getElementById("sideMenu").classList.remove("open");
+const micBtn = document.getElementById("micBtn");
 
-}
+const toast = document.getElementById("toast");
 
-/* ================= PAGES ================= */
+// =========================
 
-function showPage(pageName, button = null) {
+// TOAST
 
-  // Hide all pages
+// =========================
 
-  document.querySelectorAll(".page").forEach(page => {
+function showToast(message) {
 
-    page.classList.remove("active");
+  if (!toast) return;
 
-  });
+  toast.textContent = message;
 
-  // Show selected page
+  toast.classList.add("show");
 
-  const page = document.getElementById(pageName);
+  clearTimeout(window.toastTimer);
 
-  if (page) {
+  window.toastTimer = setTimeout(() => {
 
-    page.classList.add("active");
+    toast.classList.remove("show");
 
-  }
-
-  // Remove active from bottom buttons
-
-  document.querySelectorAll(".nav-item").forEach(item => {
-
-    item.classList.remove("active");
-
-  });
-
-  // Activate clicked button
-
-  if (button) {
-
-    button.classList.add("active");
-
-  } else {
-
-    const buttons = document.querySelectorAll(".nav-item");
-
-    const pages = [
-
-      "home",
-
-      "history",
-
-      "favorites",
-
-      "projects",
-
-      "settings"
-
-    ];
-
-    const index = pages.indexOf(pageName);
-
-    if (buttons[index]) {
-
-      buttons[index].classList.add("active");
-
-    }
-
-  }
-
-  closeMenu();
-
-  window.scrollTo({
-
-    top: 0,
-
-    behavior: "smooth"
-
-  });
+  }, 2200);
 
 }
 
-/* ================= SEND MESSAGE ================= */
+// =========================
+
+// SEND MESSAGE
+
+// =========================
 
 function sendMessage() {
 
-  const input = document.getElementById("userInput");
+  if (!input) return;
 
-  const message = input.value.trim();
+  const text = input.value.trim();
 
-  if (message === "") {
+  if (!text) {
+
+    showToast("تکایە پرسیارەکەت بنووسە");
 
     input.focus();
 
@@ -106,13 +60,7 @@ function sendMessage() {
 
   }
 
-  const welcome = document.getElementById("welcomeText");
-
-  welcome.innerHTML =
-
-    "پرسیارەکەت وەرگیرا 👍<br>" +
-
-    "Kurd AI لە ئێستادا ئامادەیە بۆ یارمەتیدانت.";
+  showToast("Kurd AI: پرسیارەکەت وەرگیرا ✅");
 
   input.value = "";
 
@@ -120,226 +68,254 @@ function sendMessage() {
 
 }
 
-/* ================= ENTER ================= */
+if (sendBtn) {
 
-function handleEnter(event) {
-
-  if (event.key === "Enter") {
-
-    event.preventDefault();
-
-    sendMessage();
-
-  }
+  sendBtn.addEventListener("click", sendMessage);
 
 }
 
-/* ================= VOICE ================= */
+if (input) {
 
-function voiceInput() {
+  input.addEventListener("keydown", function(event) {
 
-  const input = document.getElementById("userInput");
+    if (event.key === "Enter") {
 
-  if (
+      event.preventDefault();
 
-    !("webkitSpeechRecognition" in window) &&
-
-    !("SpeechRecognition" in window)
-
-  ) {
-
-    alert(
-
-      "گەڕانەوەی دەنگ لەم وێبگەیەدا لە براوزەرەکەت پشتگیری ناکرێت."
-
-    );
-
-    return;
-
-  }
-
-  const SpeechRecognition =
-
-    window.SpeechRecognition ||
-
-    window.webkitSpeechRecognition;
-
-  const recognition = new SpeechRecognition();
-
-  recognition.lang = "ku";
-
-  recognition.interimResults = false;
-
-  recognition.maxAlternatives = 1;
-
-  recognition.start();
-
-  recognition.onstart = function () {
-
-    input.placeholder = "گوێم لێیە...";
-
-  };
-
-  recognition.onresult = function (event) {
-
-    const text =
-
-      event.results[0][0].transcript;
-
-    input.value = text;
-
-    input.placeholder =
-
-      "پرسیارێکت لێرە بنووسە...";
-
-  };
-
-  recognition.onerror = function () {
-
-    input.placeholder =
-
-      "پرسیارێکت لێرە بنووسە...";
-
-    alert("نەتوانرا دەنگ وەرگیرێت.");
-
-  };
-
-  recognition.onend = function () {
-
-    input.placeholder =
-
-      "پرسیارێکت لێرە بنووسە...";
-
-  };
-
-}
-
-/* ================= FEATURES ================= */
-
-function feature(type) {
-
-  const input = document.getElementById("userInput");
-
-  const messages = {
-
-    chat:
-
-      "دەربارەی چی دەتەوێت گفتوگۆ بکەین؟",
-
-    image:
-
-      "چی دەتەوێت وێنەی بۆ دروست بکەم؟",
-
-    writing:
-
-      "دەقی چی دەتەوێت بۆ بنووسم؟",
-
-    translate:
-
-      "دەقی چی دەتەوێت وەرگێڕم؟",
-
-    learn:
-
-      "چی دەتەوێت فێری ببیت؟",
-
-    code:
-
-      "کۆدی چی دەتەوێت دروست بکەین؟",
-
-    voice:
-
-      "دەتوانیت دوگمەی مایکروفۆن بەکاربهێنیت.",
-
-    more:
-
-      "بە زوویی تایبەتمەندی زیاتر زیاد دەکرێت."
-
-  };
-
-  input.value = messages[type] || "";
-
-  input.focus();
-
-  window.scrollTo({
-
-    top: 0,
-
-    behavior: "smooth"
-
-  });
-
-}
-
-/* ================= PROFILE ================= */
-
-function openProfile() {
-
-  document
-
-    .getElementById("profileModal")
-
-    .classList.add("show");
-
-}
-
-function closeProfile() {
-
-  document
-
-    .getElementById("profileModal")
-
-    .classList.remove("show");
-
-}
-
-/* ================= PRO ================= */
-
-function upgradePro() {
-
-  alert(
-
-    "Kurd AI Pro بە زوویی بەردەست دەبێت 🚀"
-
-  );
-
-}
-
-/* ================= DARK MODE ================= */
-
-function toggleDarkMode() {
-
-  document.body.classList.toggle("light-mode");
-
-}
-
-/* ================= MODAL OUTSIDE CLICK ================= */
-
-document
-
-  .getElementById("profileModal")
-
-  .addEventListener("click", function(event) {
-
-    if (event.target === this) {
-
-      closeProfile();
+      sendMessage();
 
     }
 
   });
 
-/* ================= INITIALIZE ================= */
+}
 
-document.addEventListener("DOMContentLoaded", function() {
+// =========================
 
-  const input =
+// MICROPHONE
 
-    document.getElementById("userInput");
+// =========================
 
-  if (input) {
+let recognition = null;
 
-    input.focus();
+const SpeechRecognition =
 
-  }
+  window.SpeechRecognition ||
+
+  window.webkitSpeechRecognition;
+
+if (SpeechRecognition && micBtn && input) {
+
+  recognition = new SpeechRecognition();
+
+  recognition.lang = "ku";
+
+  recognition.continuous = false;
+
+  recognition.interimResults = false;
+
+  recognition.onstart = function() {
+
+    showToast("گوێم لێتە 🎙️");
+
+  };
+
+  recognition.onresult = function(event) {
+
+    const result =
+
+      event.results[0][0].transcript;
+
+    input.value = result;
+
+  };
+
+  recognition.onerror = function() {
+
+    showToast("دەنگ نەدۆزرایەوە");
+
+  };
+
+  recognition.onend = function() {
+
+    // microphone finished
+
+  };
+
+  micBtn.addEventListener("click", function() {
+
+    try {
+
+      recognition.start();
+
+    } catch (error) {
+
+      // microphone is already running
+
+    }
+
+  });
+
+}
+
+else if (micBtn) {
+
+  micBtn.addEventListener("click", function() {
+
+    showToast("ئەم وێبگەڕە پشتگیری دەنگ ناکات");
+
+  });
+
+}
+
+// =========================
+
+// FEATURE BUTTONS
+
+// =========================
+
+const features =
+
+  document.querySelectorAll(".feature");
+
+features.forEach(function(button) {
+
+  button.addEventListener("click", function() {
+
+    const text =
+
+      button.getAttribute("data-text");
+
+    if (text) {
+
+      showToast(text + " هەڵبژێردرا");
+
+    }
+
+  });
+
+});
+
+// =========================
+
+// PRO
+
+// =========================
+
+const proBtn =
+
+  document.getElementById("proBtn");
+
+if (proBtn) {
+
+  proBtn.addEventListener("click", function() {
+
+    showToast("Kurd AI Pro بە زوویی دێت ⭐");
+
+  });
+
+}
+
+// =========================
+
+// PROFILE
+
+// =========================
+
+const profileBtn =
+
+  document.getElementById("profileBtn");
+
+if (profileBtn) {
+
+  profileBtn.addEventListener("click", function() {
+
+    showToast("پڕۆفایل 👤");
+
+  });
+
+}
+
+// =========================
+
+// MENU
+
+// =========================
+
+const menuBtn =
+
+  document.getElementById("menuBtn");
+
+if (menuBtn) {
+
+  menuBtn.addEventListener("click", function() {
+
+    showToast("مێنیو ☰");
+
+  });
+
+}
+
+// =========================
+
+// BOTTOM NAVIGATION
+
+// =========================
+
+const navItems =
+
+  document.querySelectorAll(".nav-item");
+
+navItems.forEach(function(item) {
+
+  item.addEventListener("click", function() {
+
+    navItems.forEach(function(nav) {
+
+      nav.classList.remove("active");
+
+    });
+
+    item.classList.add("active");
+
+    const page =
+
+      item.getAttribute("data-page");
+
+    switch (page) {
+
+      case "home":
+
+        showToast("سەرەکی");
+
+        break;
+
+      case "menu":
+
+        showToast("مێژوو");
+
+        break;
+
+      case "favorites":
+
+        showToast("دڵخوازەکان");
+
+        break;
+
+      case "projects":
+
+        showToast("پڕۆژەکان");
+
+        break;
+
+      case "settings":
+
+        showToast("ڕێکخستن");
+
+        break;
+
+    }
+
+  });
 
 });
