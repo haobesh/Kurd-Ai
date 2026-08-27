@@ -4,839 +4,541 @@
 
 <head>
 
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-  <meta
+    <meta name="viewport"
 
-    name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    <meta name="theme-color" content="#080807">
 
-  >
+    <title>Kurd AI</title>
 
-  <meta name="theme-color" content="#050505">
-
-  <title>Kurd AI</title>
-
-  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-  <div class="app">
-
-    <!-- ================= BACKGROUND ================= -->
-
-    <div class="background-text">
-
-      بژی کورد<br>
-
-      و کوردستان
-
-    </div>
-
-    <div class="gold-glow"></div>
-
     <!-- ================= HEADER ================= -->
 
-    <header class="header">
+    <header class="top-header">
 
-      <button
+        <button class="icon-button profile-button" id="profileBtn">
 
-        class="profile-btn"
+            <span>♙</span>
 
-        id="profileBtn"
+        </button>
 
-        type="button"
+        <button class="menu-button" id="menuBtn">
 
-      >
+            <span></span>
 
-        ♙
+            <span></span>
 
-      </button>
+            <span></span>
 
-      <button
-
-        class="menu-btn"
-
-        id="menuBtn"
-
-        type="button"
-
-      >
-
-        <span></span>
-
-        <span></span>
-
-        <span></span>
-
-      </button>
+        </button>
 
     </header>
 
-    <!-- ================= MAIN ================= -->
-
-    <main class="main">
-
-      <!-- LOGO -->
-
-      <section class="hero">
-
-        <div class="logo">
-
-          <div class="kurd">
-
-            Kurd
-
-          </div>
-
-          <div class="ai">
-
-            AI
-
-          </div>
-
-        </div>
-
-        <div class="decoration">
-
-          <span></span>
-
-          <b>✦</b>
-
-          <span></span>
-
-        </div>
-
-        <p class="subtitle">
-
-          دەستیارێکی زیرەکی کوردی
-
-        </p>
-
-      </section>
-
-      <!-- ================= INPUT ================= -->
-
-      <section class="chat-area">
-
-        <div class="input-box">
-
-          <input
-
-            id="messageInput"
-
-            type="text"
-
-            placeholder="پرسیارێکت لێرە بنووسە..."
-
-            autocomplete="off"
-
-          >
-
-          <button
-
-            class="voice-btn"
-
-            id="voiceBtn"
-
-            type="button"
-
-          >
-
-            🎙️
-
-          </button>
-
-          <button
-
-            class="send-btn"
-
-            id="sendBtn"
-
-            type="button"
-
-          >
-
-            ➤
-
-          </button>
-
-        </div>
-
-      </section>
-
-      <!-- ================= AI RESPONSE ================= -->
-
-      <section class="ai-response">
-
-        <div class="ai-avatar">
-
-          ✦
-
-        </div>
-
-        <div class="response-content">
-
-          <div class="response-name">
-
-            Kurd AI
-
-          </div>
-
-          <div
-
-            class="response-message"
-
-            id="responseMessage"
-
-          >
-
-            سڵاو 👋 چۆنی؟ چ شتێکت بۆ بکەم؟
-
-          </div>
-
-        </div>
-
-      </section>
-
-      <!-- ================= FEATURES ================= -->
-
-      <section class="features">
-
-        <!-- 1 -->
-
-        <button
-
-          class="feature"
-
-          data-feature="chat"
-
-          type="button"
-
-        >
-
-          <div class="feature-icon">
-
-            💬
-
-          </div>
-
-          <strong>
-
-            گفتوگۆ
-
-          </strong>
-
-          <small>
-
-            گفتوگۆی زیرەک
-
-          </small>
-
-        </button>
-
-        <!-- 2 -->
-
-        <button
-
-          class="feature"
-
-          data-feature="image"
-
-          type="button"
-
-        >
-
-          <div class="feature-icon">
-
-            ▧
-
-          </div>
-
-          <strong>
-
-            دروستکردنی وێنە
-
-          </strong>
-
-          <small>
-
-            وێنە دروست بکە
-
-          </small>
-
-        </button>
-
-        <!-- 3 -->
-
-        <button
-
-          class="feature"
-
-          data-feature="writing"
-
-          type="button"
-
-        >
-
-          <div class="feature-icon">
-
-            ✎
-
-          </div>
-
-          <strong>
-
-            نووسین
-
-          </strong>
-
-          <small>
-
-            یارمەتی نووسین
-
-          </small>
-
-        </button>
-
-        <!-- 4 -->
-
-        <button
-
-          class="feature"
-
-          data-feature="translate"
-
-          type="button"
-
-        >
-
-          <div class="feature-icon">
-
-            A文
-
-          </div>
-
-          <strong>
-
-            وەرگێڕان
-
-          </strong>
-
-          <small>
-
-            وەرگێڕانی دەق
-
-          </small>
-
-        </button>
-
-        <!-- 5 -->
-
-        <button
-
-          class="feature"
-
-          data-feature="study"
-
-          type="button"
-
-        >
-
-          <div class="feature-icon">
-
-            📖
-
-          </div>
-
-          <strong>
-
-            یارمەتی خوێندن
-
-          </strong>
-
-          <small>
-
-            فێربوون و خوێندن
-
-          </small>
-
-        </button>
-
-        <!-- 6 -->
-
-        <button
-
-          class="feature"
-
-          data-feature="code"
-
-          type="button"
-
-        >
-
-          <div class="feature-icon">
-
-            &lt;/&gt;
-
-          </div>
-
-          <strong>
-
-            کۆدنوسین
-
-          </strong>
-
-          <small>
-
-            یارمەتی کۆد
-
-          </small>
-
-        </button>
-
-        <!-- 7 -->
-
-        <button
-
-          class="feature"
-
-          data-feature="voice"
-
-          type="button"
-
-        >
-
-          <div class="feature-icon">
-
-            🎙️
-
-          </div>
-
-          <strong>
-
-            دەنگ
-
-          </strong>
-
-          <small>
-
-            گفتوگۆی دەنگی
-
-          </small>
-
-        </button>
-
-        <!-- 8 -->
-
-        <button
-
-          class="feature"
-
-          data-feature="more"
-
-          type="button"
-
-        >
-
-          <div class="feature-icon">
-
-            ☆
-
-          </div>
-
-          <strong>
-
-            زۆرتر
-
-          </strong>
-
-          <small>
-
-            تایبەتمەندی زیاتر
-
-          </small>
-
-        </button>
-
-      </section>
-
-      <!-- ================= PRO ================= -->
-
-      <section class="pro-card">
-
-        <div class="pro-crown">
-
-          ♛
-
-        </div>
-
-        <div class="pro-info">
-
-          <h3>
-
-            Kurd AI Pro
-
-          </h3>
-
-          <p>
-
-            ئەزموونێکی زیاتر و بەهێزتر
-
-          </p>
-
-        </div>
-
-        <button
-
-          id="proBtn"
-
-          type="button"
-
-        >
-
-          بینین
-
-        </button>
-
-      </section>
-
-    </main>
-
-    <!-- ================= BOTTOM NAVIGATION ================= -->
-
-    <nav class="bottom-nav">
-
-      <button
-
-        class="nav-item active"
-
-        data-page="home"
-
-        type="button"
-
-      >
-
-        <span>⌂</span>
-
-        <small>
-
-          سەرەکی
-
-        </small>
-
-      </button>
-
-      <button
-
-        class="nav-item"
-
-        data-page="history"
-
-        type="button"
-
-      >
-
-        <span>◷</span>
-
-        <small>
-
-          مێژوو
-
-        </small>
-
-      </button>
-
-      <button
-
-        class="nav-item"
-
-        data-page="favorites"
-
-        type="button"
-
-      >
-
-        <span>♡</span>
-
-        <small>
-
-          دڵخوازەکان
-
-        </small>
-
-      </button>
-
-      <button
-
-        class="nav-item"
-
-        data-page="projects"
-
-        type="button"
-
-      >
-
-        <span>□</span>
-
-        <small>
-
-          پڕۆژەکان
-
-        </small>
-
-      </button>
-
-      <button
-
-        class="nav-item"
-
-        data-page="settings"
-
-        type="button"
-
-      >
-
-        <span>⚙</span>
-
-        <small>
-
-          ڕێکخستن
-
-        </small>
-
-      </button>
-
-    </nav>
-
-    <!-- ================= OVERLAY ================= -->
-
-    <div
-
-      class="overlay"
-
-      id="overlay"
-
-    ></div>
-
     <!-- ================= SIDE MENU ================= -->
 
-    <aside
+    <div class="menu-overlay" id="menuOverlay"></div>
 
-      class="side-menu"
+    <aside class="side-menu" id="sideMenu">
 
-      id="sideMenu"
-
-    >
-
-      <div class="menu-header">
+        <button class="close-menu" id="closeMenu">×</button>
 
         <div class="menu-logo">
 
-          <span>Kurd</span>
+            <span class="gold">Kurd</span>
 
-          <b>AI</b>
+            <span>AI</span>
 
         </div>
 
-        <button
+        <div class="menu-line"></div>
 
-          class="close-menu"
+        <button class="menu-item" data-page="home">
 
-          id="closeMenu"
+            🏠
 
-          type="button"
-
-        >
-
-          ×
+            <span>سەرەکی</span>
 
         </button>
 
-      </div>
+        <button class="menu-item" data-page="projects">
 
-      <div class="menu-user">
+            □
 
-        <div class="user-avatar">
+            <span>پڕۆژەکان</span>
 
-          ♙
+        </button>
 
-        </div>
+        <button class="menu-item" data-page="favorites">
 
-        <div>
+            ♡
 
-          <strong>
+            <span>دڵخوازەکان</span>
 
-            بەخێربێیت
+        </button>
 
-          </strong>
+        <button class="menu-item" data-page="history">
 
-          <small>
+            ◷
 
-            Kurd AI
+            <span>مێژوو</span>
 
-          </small>
+        </button>
 
-        </div>
+        <button class="menu-item" data-page="settings">
 
-      </div>
+            ⚙
 
-      <button
+            <span>ڕێکخستن</span>
 
-        class="menu-item"
-
-        data-menu="home"
-
-        type="button"
-
-      >
-
-        <span>⌂</span>
-
-        سەرەکی
-
-      </button>
-
-      <button
-
-        class="menu-item"
-
-        data-menu="history"
-
-        type="button"
-
-      >
-
-        <span>◷</span>
-
-        مێژوو
-
-      </button>
-
-      <button
-
-        class="menu-item"
-
-        data-menu="favorites"
-
-        type="button"
-
-      >
-
-        <span>♡</span>
-
-        دڵخوازەکان
-
-      </button>
-
-      <button
-
-        class="menu-item"
-
-        data-menu="projects"
-
-        type="button"
-
-      >
-
-        <span>□</span>
-
-        پڕۆژەکان
-
-      </button>
-
-      <button
-
-        class="menu-item"
-
-        data-menu="settings"
-
-        type="button"
-
-      >
-
-        <span>⚙</span>
-
-        ڕێکخستن
-
-      </button>
-
-      <div class="menu-footer">
-
-        بژی کورد و کوردستان ❤️
-
-      </div>
+        </button>
 
     </aside>
 
-    <!-- ================= MODAL ================= -->
+    <!-- ================= MAIN ================= -->
 
-    <div
+    <main class="app">
 
-      class="modal"
+        <!-- Kurdish slogan -->
 
-      id="modal"
+        <section class="slogan">
 
-    >
+            <div>بژی کورد</div>
 
-      <div class="modal-box">
+            <div>و کوردستان</div>
 
-        <button
+        </section>
 
-          class="modal-close"
+        <!-- Logo -->
 
-          id="modalClose"
+        <section class="hero">
 
-          type="button"
+            <div class="hero-logo">
 
-        >
+                <div class="kurd-text">
 
-          ×
+                    Kurd
+
+                </div>
+
+                <div class="ai-text">
+
+                    AI
+
+                </div>
+
+            </div>
+
+            <div class="background-kurdish">
+
+                بژی کوردستان
+
+                <br>
+
+                و کورد
+
+            </div>
+
+            <div class="gold-divider">
+
+                <span></span>
+
+                <b>✦</b>
+
+                <span></span>
+
+            </div>
+
+            <p class="subtitle">
+
+                دەستیارێکی زیرەکی کوردی
+
+            </p>
+
+        </section>
+
+        <!-- ================= CHAT INPUT ================= -->
+
+        <section class="chat-section">
+
+            <div class="input-wrapper">
+
+                <button class="send-button" id="sendBtn">
+
+                    ➤
+
+                </button>
+
+                <button class="mic-button" id="micBtn">
+
+                    🎙️
+
+                </button>
+
+                <input
+
+                    type="text"
+
+                    id="promptInput"
+
+                    placeholder="پرسیارێکت لێرە بنووسە..."
+
+                    autocomplete="off"
+
+                >
+
+            </div>
+
+            <!-- AI response -->
+
+            <div class="ai-message" id="aiMessage">
+
+                <div class="ai-avatar">
+
+                    ✦
+
+                </div>
+
+                <div class="ai-message-content">
+
+                    <strong>Kurd AI</strong>
+
+                    <p id="responseText">
+
+                        سڵاو 👋 چۆنی؟ چ شتێک دەتوانم بۆت بکەم؟
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= QUICK TOOLS ================= -->
+
+        <section class="tools-section">
+
+            <button class="tool-card" data-tool="chat">
+
+                <div class="tool-icon">
+
+                    💬
+
+                </div>
+
+                <h3>
+
+                    گفتوگۆ
+
+                </h3>
+
+                <p>
+
+                    گفتوگۆی زیرەک
+
+                </p>
+
+            </button>
+
+            <button class="tool-card" data-tool="image">
+
+                <div class="tool-icon">
+
+                    ▧
+
+                </div>
+
+                <h3>
+
+                    دروستکردنی وێنە
+
+                </h3>
+
+                <p>
+
+                    وێنە دروست بکە
+
+                </p>
+
+            </button>
+
+            <button class="tool-card" data-tool="writer">
+
+                <div class="tool-icon">
+
+                    ✎
+
+                </div>
+
+                <h3>
+
+                    نووسین
+
+                </h3>
+
+                <p>
+
+                    یارمەتی نووسین
+
+                </p>
+
+            </button>
+
+            <button class="tool-card" data-tool="translate">
+
+                <div class="tool-icon">
+
+                    A文
+
+                </div>
+
+                <h3>
+
+                    وەرگێڕان
+
+                </h3>
+
+                <p>
+
+                    وەرگێڕانی دەق
+
+                </p>
+
+            </button>
+
+            <button class="tool-card" data-tool="learn">
+
+                <div class="tool-icon">
+
+                    📖
+
+                </div>
+
+                <h3>
+
+                    یارمەتی خوێندن
+
+                </h3>
+
+                <p>
+
+                    فێربوون و خوێندن
+
+                </p>
+
+            </button>
+
+            <button class="tool-card" data-tool="code">
+
+                <div class="tool-icon">
+
+                    &lt;/&gt;
+
+                </div>
+
+                <h3>
+
+                    کۆدنوسین
+
+                </h3>
+
+                <p>
+
+                    یارمەتی کۆد
+
+                </p>
+
+            </button>
+
+            <button class="tool-card" data-tool="voice">
+
+                <div class="tool-icon">
+
+                    🎙️
+
+                </div>
+
+                <h3>
+
+                    دەنگ
+
+                </h3>
+
+                <p>
+
+                    گفتوگۆی دەنگی
+
+                </p>
+
+            </button>
+
+            <button class="tool-card" data-tool="more">
+
+                <div class="tool-icon">
+
+                    ☆
+
+                </div>
+
+                <h3>
+
+                    زۆرتر
+
+                </h3>
+
+                <p>
+
+                    تایبەتمەندی زۆرتر
+
+                </p>
+
+            </button>
+
+        </section>
+
+        <!-- ================= PRO ================= -->
+
+        <section class="pro-section">
+
+            <div class="pro-title">
+
+                ♛
+
+                <span>Kurd AI Pro</span>
+
+            </div>
+
+            <p>
+
+                ئەزموونێکی زیاتر و بەهێزتر
+
+            </p>
+
+            <button class="pro-button" id="proBtn">
+
+                بەشداری Kurd AI Pro
+
+            </button>
+
+        </section>
+
+    </main>
+
+    <!-- ================= BOTTOM NAV ================= -->
+
+    <nav class="bottom-nav">
+
+        <button class="nav-item active" data-page="home">
+
+            <span class="nav-icon">⌂</span>
+
+            <span>
+
+                سەرەکی
+
+            </span>
 
         </button>
 
-        <div class="modal-icon">
+        <button class="nav-item" data-page="history">
 
-          ✦
+            <span class="nav-icon">◷</span>
+
+            <span>
+
+                مێژوو
+
+            </span>
+
+        </button>
+
+        <button class="nav-item" data-page="favorites">
+
+            <span class="nav-icon">♡</span>
+
+            <span>
+
+                دڵخوازەکان
+
+            </span>
+
+        </button>
+
+        <button class="nav-item" data-page="projects">
+
+            <span class="nav-icon">□</span>
+
+            <span>
+
+                پڕۆژەکان
+
+            </span>
+
+        </button>
+
+        <button class="nav-item" data-page="settings">
+
+            <span class="nav-icon">⚙</span>
+
+            <span>
+
+                ڕێکخستن
+
+            </span>
+
+        </button>
+
+    </nav>
+
+    <!-- ================= MODAL ================= -->
+
+    <div class="modal" id="modal">
+
+        <div class="modal-box">
+
+            <button class="modal-close" id="modalClose">
+
+                ×
+
+            </button>
+
+            <div class="modal-icon">
+
+                ✦
+
+            </div>
+
+            <h2 id="modalTitle">
+
+                Kurd AI
+
+            </h2>
+
+            <p id="modalText">
+
+                بەخێربێیت بۆ Kurd AI
+
+            </p>
+
+            <button class="modal-action" id="modalAction">
+
+                باشە
+
+            </button>
 
         </div>
 
-        <h2 id="modalTitle">
-
-          Kurd AI
-
-        </h2>
-
-        <p id="modalText">
-
-          بەخێربێیت بۆ Kurd AI
-
-        </p>
-
-        <button
-
-          class="modal-action"
-
-          id="modalAction"
-
-          type="button"
-
-        >
-
-          باشە
-
-        </button>
-
-      </div>
-
     </div>
 
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 
