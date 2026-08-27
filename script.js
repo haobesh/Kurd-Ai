@@ -14,11 +14,23 @@ const micBtn = document.getElementById("micBtn");
 
 const toast = document.getElementById("toast");
 
+const profileBtn = document.getElementById("profileBtn");
+
+const menuBtn = document.getElementById("menuBtn");
+
+const proBtn = document.getElementById("proBtn");
+
+const features = document.querySelectorAll(".feature");
+
+const navItems = document.querySelectorAll(".nav-item");
+
 // =========================
 
 // TOAST
 
 // =========================
+
+let toastTimer;
 
 function showToast(message) {
 
@@ -28,9 +40,9 @@ function showToast(message) {
 
   toast.classList.add("show");
 
-  clearTimeout(window.toastTimer);
+  clearTimeout(toastTimer);
 
-  window.toastTimer = setTimeout(() => {
+  toastTimer = setTimeout(function () {
 
     toast.classList.remove("show");
 
@@ -60,6 +72,16 @@ function sendMessage() {
 
   }
 
+  /*
+
+    ئێستا UI ـەکە وەڵامی وەرگرتنی
+
+    پرسیار پیشان دەدات.
+
+    دواتر API ـی Kurd AI لێرە پەیوەست دەکەین.
+
+  */
+
   showToast("Kurd AI: پرسیارەکەت وەرگیرا ✅");
 
   input.value = "";
@@ -76,7 +98,7 @@ if (sendBtn) {
 
 if (input) {
 
-  input.addEventListener("keydown", function(event) {
+  input.addEventListener("keydown", function (event) {
 
     if (event.key === "Enter") {
 
@@ -114,13 +136,13 @@ if (SpeechRecognition && micBtn && input) {
 
   recognition.interimResults = false;
 
-  recognition.onstart = function() {
+  recognition.onstart = function () {
 
     showToast("گوێم لێتە 🎙️");
 
   };
 
-  recognition.onresult = function(event) {
+  recognition.onresult = function (event) {
 
     const result =
 
@@ -128,21 +150,17 @@ if (SpeechRecognition && micBtn && input) {
 
     input.value = result;
 
-  };
-
-  recognition.onerror = function() {
-
-    showToast("دەنگ نەدۆزرایەوە");
+    input.focus();
 
   };
 
-  recognition.onend = function() {
+  recognition.onerror = function () {
 
-    // microphone finished
+    showToast("کێشەیەک لە دەنگدا ڕوویدا");
 
   };
 
-  micBtn.addEventListener("click", function() {
+  micBtn.addEventListener("click", function () {
 
     try {
 
@@ -150,7 +168,7 @@ if (SpeechRecognition && micBtn && input) {
 
     } catch (error) {
 
-      // microphone is already running
+      showToast("میکرۆفۆن پێشتر چالاکە");
 
     }
 
@@ -160,7 +178,7 @@ if (SpeechRecognition && micBtn && input) {
 
 else if (micBtn) {
 
-  micBtn.addEventListener("click", function() {
+  micBtn.addEventListener("click", function () {
 
     showToast("ئەم وێبگەڕە پشتگیری دەنگ ناکات");
 
@@ -174,21 +192,107 @@ else if (micBtn) {
 
 // =========================
 
-const features =
+features.forEach(function (button) {
 
-  document.querySelectorAll(".feature");
+  button.addEventListener("click", function () {
 
-features.forEach(function(button) {
-
-  button.addEventListener("click", function() {
-
-    const text =
+    const feature =
 
       button.getAttribute("data-text");
 
-    if (text) {
+    if (!feature) return;
 
-      showToast(text + " هەڵبژێردرا");
+    if (feature === "گفتوگۆی زیرەک") {
+
+      input.focus();
+
+      showToast("ئێستا دەتوانیت گفتوگۆ بکەیت 💬");
+
+      return;
+
+    }
+
+    if (feature === "دروستکردنی وێنە") {
+
+      showToast("بەشی دروستکردنی وێنە هەڵبژێردرا 🖼️");
+
+      return;
+
+    }
+
+    if (feature === "نووسین") {
+
+      input.focus();
+
+      input.placeholder =
+
+        "چی دەتەوێت بنووسین؟";
+
+      showToast("بەشی نووسین چالاک کرا ✎");
+
+      return;
+
+    }
+
+    if (feature === "وەرگێڕان") {
+
+      input.focus();
+
+      input.placeholder =
+
+        "دەقەکەت بۆ وەرگێڕان بنووسە...";
+
+      showToast("بەشی وەرگێڕان چالاک کرا 🌐");
+
+      return;
+
+    }
+
+    if (feature === "یارمەتی خوێندن") {
+
+      input.focus();
+
+      input.placeholder =
+
+        "چی دەتەوێت فێری ببیت؟";
+
+      showToast("یارمەتی خوێندن چالاک کرا 📖");
+
+      return;
+
+    }
+
+    if (feature === "کۆدنوسین") {
+
+      input.focus();
+
+      input.placeholder =
+
+        "کۆدەکەت یان پرسیاری کۆد بنووسە...";
+
+      showToast("بەشی کۆدنوسین چالاک کرا </>");
+
+      return;
+
+    }
+
+    if (feature === "دەنگ") {
+
+      if (micBtn) {
+
+        micBtn.click();
+
+      }
+
+      return;
+
+    }
+
+    if (feature === "زۆرتر") {
+
+      showToast("تایبەتمەندی زیاتر بە زوویی دێت ⭐");
+
+      return;
 
     }
 
@@ -198,39 +302,15 @@ features.forEach(function(button) {
 
 // =========================
 
-// PRO
-
-// =========================
-
-const proBtn =
-
-  document.getElementById("proBtn");
-
-if (proBtn) {
-
-  proBtn.addEventListener("click", function() {
-
-    showToast("Kurd AI Pro بە زوویی دێت ⭐");
-
-  });
-
-}
-
-// =========================
-
 // PROFILE
 
 // =========================
 
-const profileBtn =
-
-  document.getElementById("profileBtn");
-
 if (profileBtn) {
 
-  profileBtn.addEventListener("click", function() {
+  profileBtn.addEventListener("click", function () {
 
-    showToast("پڕۆفایل 👤");
+    showToast("پڕۆفایلی Kurd AI 👤");
 
   });
 
@@ -242,15 +322,27 @@ if (profileBtn) {
 
 // =========================
 
-const menuBtn =
-
-  document.getElementById("menuBtn");
-
 if (menuBtn) {
 
-  menuBtn.addEventListener("click", function() {
+  menuBtn.addEventListener("click", function () {
 
     showToast("مێنیو ☰");
+
+  });
+
+}
+
+// =========================
+
+// PRO
+
+// =========================
+
+if (proBtn) {
+
+  proBtn.addEventListener("click", function () {
+
+    showToast("Kurd AI Pro ⭐ بە زوویی دێت");
 
   });
 
@@ -262,15 +354,11 @@ if (menuBtn) {
 
 // =========================
 
-const navItems =
+navItems.forEach(function (item) {
 
-  document.querySelectorAll(".nav-item");
+  item.addEventListener("click", function () {
 
-navItems.forEach(function(item) {
-
-  item.addEventListener("click", function() {
-
-    navItems.forEach(function(nav) {
+    navItems.forEach(function (nav) {
 
       nav.classList.remove("active");
 
@@ -286,31 +374,31 @@ navItems.forEach(function(item) {
 
       case "home":
 
-        showToast("سەرەکی");
+        showToast("سەرەکی 🏠");
 
         break;
 
       case "menu":
 
-        showToast("مێژوو");
+        showToast("مێژوو 🕘");
 
         break;
 
       case "favorites":
 
-        showToast("دڵخوازەکان");
+        showToast("دڵخوازەکان ♡");
 
         break;
 
       case "projects":
 
-        showToast("پڕۆژەکان");
+        showToast("پڕۆژەکان 📁");
 
         break;
 
       case "settings":
 
-        showToast("ڕێکخستن");
+        showToast("ڕێکخستن ⚙️");
 
         break;
 
