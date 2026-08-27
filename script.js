@@ -1,36 +1,24 @@
-/* =================================
+/* =========================================
 
-   KURD AI
+   Kurd AI
 
    Main JavaScript
 
-================================= */
+========================================= */
 
-/* =================================
+const input = document.getElementById("promptInput");
 
-   Elements
+const sendBtn = document.getElementById("sendBtn");
 
-================================= */
-
-const messageInput =
-
-  document.getElementById("messageInput");
-
-const sendButton =
-
-  document.getElementById("sendButton");
-
-const voiceButton =
-
-  document.getElementById("voiceButton");
+const micBtn = document.getElementById("micBtn");
 
 const responseText =
 
   document.getElementById("responseText");
 
-const menuButton =
+const menuBtn =
 
-  document.getElementById("menuButton");
+  document.getElementById("menuBtn");
 
 const closeMenu =
 
@@ -44,37 +32,35 @@ const overlay =
 
   document.getElementById("overlay");
 
-const profileButton =
+const profileBtn =
 
-  document.getElementById("profileButton");
+  document.getElementById("profileBtn");
 
-const proButton =
+const proBtn =
 
-  document.getElementById("proButton");
+  document.getElementById("proBtn");
 
 const featureCards =
 
   document.querySelectorAll(".feature-card");
 
-const navButtons =
+const navItems =
 
-  document.querySelectorAll(".nav-button");
+  document.querySelectorAll(".nav-item");
 
-/* =================================
+/* =========================================
 
-   Send Message
+   AI Response
 
-================================= */
+========================================= */
 
 function sendMessage() {
 
-  const message =
-
-    messageInput.value.trim();
+  const message = input.value.trim();
 
   if (!message) {
 
-    messageInput.focus();
+    input.focus();
 
     return;
 
@@ -84,21 +70,25 @@ function sendMessage() {
 
     "Kurd AI خەریکی بیرکردنەوەیە...";
 
+  sendBtn.disabled = true;
+
   setTimeout(() => {
 
     responseText.textContent =
 
-      "سڵاو 👋 پرسیارەکەت وەرگیرا. لە هەنگاوی دواتردا دەتوانین Kurd AI بە AI ـی ڕاستەقینە پەیوەست بکەین.";
+      "سڵاو 👋 پرسیارەکەت وەرگیرا. ئەمە وەڵامی تاقیکردنەوەی Kurd AI ـە. دواتر AI ـی ڕاستەقینە بە API پەیوەست دەکەین.";
+
+    sendBtn.disabled = false;
 
   }, 900);
 
-  messageInput.value = "";
+  input.value = "";
 
 }
 
-/* Click */
+/* Send button */
 
-sendButton.addEventListener(
+sendBtn.addEventListener(
 
   "click",
 
@@ -106,15 +96,17 @@ sendButton.addEventListener(
 
 );
 
-/* Enter */
+/* Enter key */
 
-messageInput.addEventListener(
+input.addEventListener(
 
   "keydown",
 
-  function(event) {
+  function (event) {
 
     if (event.key === "Enter") {
+
+      event.preventDefault();
 
       sendMessage();
 
@@ -124,11 +116,11 @@ messageInput.addEventListener(
 
 );
 
-/* =================================
+/* =========================================
 
-   Features
+   Feature Cards
 
-================================= */
+========================================= */
 
 const featureMessages = {
 
@@ -142,7 +134,7 @@ const featureMessages = {
 
   writing:
 
-    "✍️ بەشی نووسین هەڵبژێردرا.",
+    "✍️ بەشی یارمەتی نووسین هەڵبژێردرا.",
 
   translate:
 
@@ -162,19 +154,19 @@ const featureMessages = {
 
   more:
 
-    "⭐ تایبەتمەندییە زۆرترەکانی Kurd AI بە زوویی زیاد دەکرێن."
+    "⭐ بەشی تایبەتمەندییە زیاترەکان هەڵبژێردرا."
 
 };
 
 featureCards.forEach(
 
-  function(card) {
+  function (card) {
 
     card.addEventListener(
 
       "click",
 
-      function() {
+      function () {
 
         const feature =
 
@@ -182,7 +174,9 @@ featureCards.forEach(
 
         responseText.textContent =
 
-          featureMessages[feature];
+          featureMessages[feature] ||
+
+          "Kurd AI";
 
         window.scrollTo({
 
@@ -200,17 +194,21 @@ featureCards.forEach(
 
 );
 
-/* =================================
+/* =========================================
 
    Side Menu
 
-================================= */
+========================================= */
 
 function openMenu() {
 
   sideMenu.classList.add("show");
 
   overlay.classList.add("show");
+
+  document.body.style.overflow =
+
+    "hidden";
 
 }
 
@@ -220,9 +218,13 @@ function closeSideMenu() {
 
   overlay.classList.remove("show");
 
+  document.body.style.overflow =
+
+    "";
+
 }
 
-menuButton.addEventListener(
+menuBtn.addEventListener(
 
   "click",
 
@@ -246,17 +248,17 @@ overlay.addEventListener(
 
 );
 
-/* =================================
+/* =========================================
 
    Profile
 
-================================= */
+========================================= */
 
-profileButton.addEventListener(
+profileBtn.addEventListener(
 
   "click",
 
-  function() {
+  function () {
 
     responseText.textContent =
 
@@ -266,17 +268,17 @@ profileButton.addEventListener(
 
 );
 
-/* =================================
+/* =========================================
 
    Pro
 
-================================= */
+========================================= */
 
-proButton.addEventListener(
+proBtn.addEventListener(
 
   "click",
 
-  function() {
+  function () {
 
     responseText.textContent =
 
@@ -286,11 +288,11 @@ proButton.addEventListener(
 
 );
 
-/* =================================
+/* =========================================
 
    Bottom Navigation
 
-================================= */
+========================================= */
 
 const navMessages = {
 
@@ -316,21 +318,21 @@ const navMessages = {
 
 };
 
-navButtons.forEach(
+navItems.forEach(
 
-  function(button) {
+  function (item) {
 
-    button.addEventListener(
+    item.addEventListener(
 
       "click",
 
-      function() {
+      function () {
 
-        navButtons.forEach(
+        navItems.forEach(
 
-          function(item) {
+          function (nav) {
 
-            item.classList.remove(
+            nav.classList.remove(
 
               "active"
 
@@ -340,19 +342,21 @@ navButtons.forEach(
 
         );
 
-        button.classList.add(
+        item.classList.add(
 
           "active"
 
         );
 
-        const page =
+        const section =
 
-          button.dataset.page;
+          item.dataset.nav;
 
         responseText.textContent =
 
-          navMessages[page];
+          navMessages[section] ||
+
+          "Kurd AI";
 
       }
 
@@ -362,11 +366,11 @@ navButtons.forEach(
 
 );
 
-/* =================================
+/* =========================================
 
    Voice Recognition
 
-================================= */
+========================================= */
 
 const SpeechRecognition =
 
@@ -380,23 +384,23 @@ if (SpeechRecognition) {
 
     new SpeechRecognition();
 
-  recognition.lang = "ku";
-
   recognition.continuous = false;
 
   recognition.interimResults = false;
 
-  voiceButton.addEventListener(
+  recognition.lang = "ku";
+
+  micBtn.addEventListener(
 
     "click",
 
-    function() {
+    function () {
 
       try {
 
         recognition.start();
 
-        voiceButton.classList.add(
+        micBtn.classList.add(
 
           "listening"
 
@@ -418,13 +422,13 @@ if (SpeechRecognition) {
 
   recognition.onresult =
 
-    function(event) {
+    function (event) {
 
       const transcript =
 
         event.results[0][0].transcript;
 
-      messageInput.value =
+      input.value =
 
         transcript;
 
@@ -436,9 +440,9 @@ if (SpeechRecognition) {
 
   recognition.onend =
 
-    function() {
+    function () {
 
-      voiceButton.classList.remove(
+      micBtn.classList.remove(
 
         "listening"
 
@@ -448,9 +452,9 @@ if (SpeechRecognition) {
 
   recognition.onerror =
 
-    function() {
+    function () {
 
-      voiceButton.classList.remove(
+      micBtn.classList.remove(
 
         "listening"
 
@@ -464,11 +468,11 @@ if (SpeechRecognition) {
 
 } else {
 
-  voiceButton.addEventListener(
+  micBtn.addEventListener(
 
     "click",
 
-    function() {
+    function () {
 
       responseText.textContent =
 
@@ -480,15 +484,43 @@ if (SpeechRecognition) {
 
 }
 
-/* =================================
+/* =========================================
 
-   Initial Greeting
+   Escape = Close Menu
 
-================================= */
+========================================= */
+
+document.addEventListener(
+
+  "keydown",
+
+  function (event) {
+
+    if (
+
+      event.key === "Escape" &&
+
+      sideMenu.classList.contains("show")
+
+    ) {
+
+      closeSideMenu();
+
+    }
+
+  }
+
+);
+
+/* =========================================
+
+   Start Message
+
+========================================= */
 
 setTimeout(
 
-  function() {
+  function () {
 
     responseText.textContent =
 
@@ -496,6 +528,6 @@ setTimeout(
 
   },
 
-  700
+  500
 
 );
