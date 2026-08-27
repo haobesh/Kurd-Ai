@@ -16,6 +16,8 @@
 
 <body>
 
+  <!-- TOP BAR -->
+
   <header class="topbar">
 
     <div class="brand-slogan">
@@ -26,13 +28,13 @@
 
     </div>
 
-    <button class="icon-btn" id="profileBtn">
+    <button class="icon-btn" id="profileBtn" type="button" aria-label="پڕۆفایل">
 
       ♙
 
     </button>
 
-    <button class="menu-btn" id="menuBtn">
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="مێنیو">
 
       <span></span>
 
@@ -44,9 +46,11 @@
 
   </header>
 
+  <!-- MAIN -->
+
   <main class="main">
 
-    <!-- LOGO -->
+    <!-- HERO -->
 
     <section class="hero">
 
@@ -80,15 +84,37 @@
 
         placeholder="پرسیارێکت لێرە بنووسە..."
 
+        autocomplete="off"
+
       >
 
-      <button class="mic-btn" id="micBtn">
+      <button
+
+        class="mic-btn"
+
+        id="micBtn"
+
+        type="button"
+
+        aria-label="دەنگ"
+
+      >
 
         🎙️
 
       </button>
 
-      <button class="send-btn" id="sendBtn">
+      <button
+
+        class="send-btn"
+
+        id="sendBtn"
+
+        type="button"
+
+        aria-label="ناردن"
+
+      >
 
         ➤
 
@@ -100,11 +126,19 @@
 
     <section class="ai-message">
 
-      <div class="ai-icon">✦</div>
+      <div class="ai-icon">
 
-      <div>
+        ✦
 
-        <div class="ai-name">Kurd AI</div>
+      </div>
+
+      <div class="ai-content">
+
+        <div class="ai-name">
+
+          Kurd AI
+
+        </div>
 
         <p>
 
@@ -120,7 +154,7 @@
 
     <section class="features">
 
-      <button class="feature" data-text="گفتوگۆی زیرەک">
+      <button class="feature" type="button" data-text="گفتوگۆی زیرەک">
 
         <span class="feature-icon">💬</span>
 
@@ -130,7 +164,7 @@
 
       </button>
 
-      <button class="feature" data-text="دروستکردنی وێنە">
+      <button class="feature" type="button" data-text="دروستکردنی وێنە">
 
         <span class="feature-icon">▧</span>
 
@@ -140,7 +174,7 @@
 
       </button>
 
-      <button class="feature" data-text="نووسین">
+      <button class="feature" type="button" data-text="نووسین">
 
         <span class="feature-icon">✎</span>
 
@@ -150,7 +184,7 @@
 
       </button>
 
-      <button class="feature" data-text="وەرگێڕان">
+      <button class="feature" type="button" data-text="وەرگێڕان">
 
         <span class="feature-icon">A文</span>
 
@@ -160,7 +194,7 @@
 
       </button>
 
-      <button class="feature" data-text="یارمەتی خوێندن">
+      <button class="feature" type="button" data-text="یارمەتی خوێندن">
 
         <span class="feature-icon">📖</span>
 
@@ -170,7 +204,7 @@
 
       </button>
 
-      <button class="feature" data-text="کۆدنوسین">
+      <button class="feature" type="button" data-text="کۆدنوسین">
 
         <span class="feature-icon">&lt;/&gt;</span>
 
@@ -180,7 +214,7 @@
 
       </button>
 
-      <button class="feature" data-text="دەنگ">
+      <button class="feature" type="button" data-text="دەنگ">
 
         <span class="feature-icon">🎙️</span>
 
@@ -190,7 +224,7 @@
 
       </button>
 
-      <button class="feature" data-text="زۆرتر">
+      <button class="feature" type="button" data-text="زۆرتر">
 
         <span class="feature-icon">☆</span>
 
@@ -206,9 +240,17 @@
 
     <section class="pro">
 
-      <div class="pro-crown">♛</div>
+      <div class="pro-crown">
 
-      <h2>Kurd AI Pro</h2>
+        ♛
+
+      </div>
+
+      <h2>
+
+        Kurd AI Pro
+
+      </h2>
 
       <p>
 
@@ -216,7 +258,7 @@
 
       </p>
 
-      <button id="proBtn">
+      <button id="proBtn" type="button">
 
         ببینە
 
@@ -230,7 +272,15 @@
 
   <nav class="bottom-nav">
 
-    <button class="nav-item active" data-page="home">
+    <button
+
+      class="nav-item active"
+
+      type="button"
+
+      data-page="home"
+
+    >
 
       <span>⌂</span>
 
@@ -238,7 +288,15 @@
 
     </button>
 
-    <button class="nav-item" data-page="menu">
+    <button
+
+      class="nav-item"
+
+      type="button"
+
+      data-page="menu"
+
+    >
 
       <span>◷</span>
 
@@ -246,7 +304,15 @@
 
     </button>
 
-    <button class="nav-item" data-page="favorites">
+    <button
+
+      class="nav-item"
+
+      type="button"
+
+      data-page="favorites"
+
+    >
 
       <span>♡</span>
 
@@ -254,7 +320,15 @@
 
     </button>
 
-    <button class="nav-item" data-page="projects">
+    <button
+
+      class="nav-item"
+
+      type="button"
+
+      data-page="projects"
+
+    >
 
       <span>□</span>
 
@@ -262,7 +336,15 @@
 
     </button>
 
-    <button class="nav-item" data-page="settings">
+    <button
+
+      class="nav-item"
+
+      type="button"
+
+      data-page="settings"
+
+    >
 
       <span>⚙</span>
 
@@ -272,7 +354,21 @@
 
   </nav>
 
-  <div id="toast" class="toast"></div>
+  <!-- TOAST -->
+
+  <div
+
+    id="toast"
+
+    class="toast"
+
+    role="status"
+
+    aria-live="polite"
+
+  ></div>
+
+  <!-- JAVASCRIPT -->
 
   <script src="script.js"></script>
 
