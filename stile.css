@@ -2,45 +2,47 @@
 
   box-sizing: border-box;
 
+  margin: 0;
+
+  padding: 0;
+
   -webkit-tap-highlight-color: transparent;
 
 }
 
 :root {
 
-  --bg: #050505;
+  --black: #050505;
 
-  --card: #101010;
+  --dark: #0b0b0b;
 
-  --card2: #151515;
+  --card: #111111;
 
-  --gold: #e7b94f;
+  --gold: #e5b84f;
 
   --gold-light: #ffd978;
 
   --white: #ffffff;
 
-  --gray: #8d8d8d;
+  --gray: #8b8b8b;
 
-  --border: rgba(231, 185, 79, 0.35);
+  --border: rgba(229, 184, 79, 0.35);
 
 }
 
-html,
+html {
+
+  scroll-behavior: smooth;
+
+}
 
 body {
 
-  margin: 0;
+  min-height: 100vh;
 
-  padding: 0;
+  background: var(--black);
 
-  width: 100%;
-
-  min-height: 100%;
-
-  background: var(--bg);
-
-  color: var(--white);
+  color: white;
 
   font-family:
 
@@ -53,10 +55,6 @@ body {
     Arial,
 
     sans-serif;
-
-}
-
-body {
 
   overflow-x: hidden;
 
@@ -72,17 +70,21 @@ input {
 
 button {
 
-  border: 0;
+  border: none;
 
   cursor: pointer;
 
 }
 
+/* =================================
+
+   APP
+
+================================= */
+
 .app {
 
   position: relative;
-
-  width: 100%;
 
   min-height: 100vh;
 
@@ -94,7 +96,7 @@ button {
 
       circle at 50% 20%,
 
-      rgba(231, 185, 79, 0.09),
+      rgba(229, 184, 79, 0.10),
 
       transparent 32%
 
@@ -102,9 +104,9 @@ button {
 
     radial-gradient(
 
-      circle at 10% 80%,
+      circle at 20% 80%,
 
-      rgba(231, 185, 79, 0.035),
+      rgba(229, 184, 79, 0.04),
 
       transparent 30%
 
@@ -116,13 +118,47 @@ button {
 
 }
 
-/* Background slogan */
+/* =================================
 
-.bg-slogan {
+   BACKGROUND
+
+================================= */
+
+.background-glow {
 
   position: absolute;
 
-  top: 90px;
+  width: 500px;
+
+  height: 500px;
+
+  left: 50%;
+
+  top: 150px;
+
+  transform: translateX(-50%);
+
+  background:
+
+    radial-gradient(
+
+      circle,
+
+      rgba(229, 184, 79, 0.08),
+
+      transparent 70%
+
+    );
+
+  pointer-events: none;
+
+}
+
+.bg-text {
+
+  position: absolute;
+
+  top: 110px;
 
   left: 50%;
 
@@ -132,13 +168,13 @@ button {
 
   text-align: center;
 
-  font-size: clamp(55px, 15vw, 100px);
+  font-size: clamp(55px, 15vw, 105px);
 
   line-height: 1.25;
 
   font-weight: 900;
 
-  color: rgba(231, 185, 79, 0.055);
+  color: rgba(229, 184, 79, 0.045);
 
   white-space: nowrap;
 
@@ -148,7 +184,11 @@ button {
 
 }
 
-/* Header */
+/* =================================
+
+   HEADER
+
+================================= */
 
 .header {
 
@@ -156,19 +196,21 @@ button {
 
   z-index: 10;
 
-  height: 80px;
+  height: 82px;
 
-  padding: 20px 22px;
+  padding:
+
+    18px 22px;
 
   display: flex;
 
-  align-items: center;
-
   justify-content: space-between;
+
+  align-items: center;
 
 }
 
-.icon-btn {
+.menu-button {
 
   width: 48px;
 
@@ -184,11 +226,11 @@ button {
 
   gap: 6px;
 
-  padding: 10px;
+  padding: 8px;
 
 }
 
-.icon-btn span {
+.menu-button span {
 
   display: block;
 
@@ -196,37 +238,45 @@ button {
 
   height: 3px;
 
-  border-radius: 5px;
+  border-radius: 20px;
 
   background: var(--gold);
 
 }
 
-.profile-btn {
+.profile-button {
 
   width: 48px;
 
   height: 48px;
 
-  border: 1px solid rgba(231, 185, 79, 0.45);
-
   border-radius: 50%;
 
-  display: flex;
+  background:
 
-  align-items: center;
+    rgba(255, 255, 255, 0.02);
 
-  justify-content: center;
+  border:
+
+    1px solid rgba(229, 184, 79, 0.45);
 
   color: var(--gold);
 
-  font-size: 29px;
+  font-size: 27px;
 
-  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
 
 }
 
-/* Main */
+/* =================================
+
+   MAIN
+
+================================= */
 
 .main {
 
@@ -234,29 +284,31 @@ button {
 
   z-index: 2;
 
-  width: min(100%, 900px);
+  width: min(900px, 100%);
 
   margin: auto;
 
-  padding: 5px 22px 125px;
+  padding:
+
+    5px 20px 130px;
 
 }
 
-/* Hero */
+/* =================================
+
+   HERO
+
+================================= */
 
 .hero {
 
   text-align: center;
 
-  padding-top: 12px;
+  padding-top: 5px;
 
 }
 
 .hero h1 {
-
-  margin: 0;
-
-  line-height: 0.85;
 
   display: flex;
 
@@ -264,15 +316,17 @@ button {
 
   align-items: center;
 
+  line-height: 0.85;
+
   user-select: none;
 
 }
 
 .kurd {
 
-  font-family: Georgia, serif;
+  font-family: Georgia, "Times New Roman", serif;
 
-  font-size: clamp(72px, 20vw, 120px);
+  font-size: clamp(70px, 20vw, 125px);
 
   font-weight: 700;
 
@@ -282,77 +336,81 @@ button {
 
   text-shadow:
 
-    0 0 18px rgba(231, 185, 79, 0.18),
+    0 0 25px rgba(229, 184, 79, 0.18),
 
-    0 8px 30px rgba(0, 0, 0, 0.8);
+    0 10px 30px rgba(0, 0, 0, 0.7);
 
 }
 
 .ai {
 
-  margin-top: 10px;
+  margin-top: 13px;
 
-  font-size: clamp(72px, 20vw, 120px);
+  font-size: clamp(70px, 20vw, 125px);
 
   font-weight: 900;
 
-  letter-spacing: 8px;
+  letter-spacing: 7px;
 
   color: white;
 
-  text-shadow: 0 5px 25px rgba(255, 255, 255, 0.12);
+  text-shadow:
+
+    0 5px 25px rgba(255, 255, 255, 0.12);
 
 }
 
-.gold-line {
+.gold-divider {
+
+  width: min(280px, 75%);
+
+  margin: 27px auto 8px;
 
   display: flex;
 
   align-items: center;
 
-  justify-content: center;
-
   gap: 10px;
-
-  margin: 25px auto 8px;
-
-  width: min(280px, 70%);
 
 }
 
-.gold-line i {
+.gold-divider span {
 
   height: 1px;
 
   flex: 1;
 
-  background: linear-gradient(
+  background:
 
-    90deg,
+    linear-gradient(
 
-    transparent,
+      90deg,
 
-    rgba(231, 185, 79, 0.7)
+      transparent,
 
-  );
+      rgba(229, 184, 79, 0.75)
 
-}
-
-.gold-line i:last-child {
-
-  background: linear-gradient(
-
-    90deg,
-
-    rgba(231, 185, 79, 0.7),
-
-    transparent
-
-  );
+    );
 
 }
 
-.gold-line span {
+.gold-divider span:last-child {
+
+  background:
+
+    linear-gradient(
+
+      90deg,
+
+      rgba(229, 184, 79, 0.75),
+
+      transparent
+
+    );
+
+}
+
+.gold-divider b {
 
   color: var(--gold);
 
@@ -362,27 +420,25 @@ button {
 
 .hero p {
 
-  margin: 0 0 25px;
-
-  color: #cfcfcf;
+  color: #c8c8c8;
 
   font-size: 16px;
 
+  margin-bottom: 24px;
+
 }
 
-/* Chat */
+/* =================================
 
-.chat-box {
+   CHAT BOX
+
+================================= */
+
+.chat-container {
 
   width: 100%;
 
   min-height: 70px;
-
-  border: 1px solid rgba(231, 185, 79, 0.65);
-
-  border-radius: 22px;
-
-  background: rgba(13, 13, 13, 0.94);
 
   display: flex;
 
@@ -390,23 +446,31 @@ button {
 
   padding: 8px;
 
+  border-radius: 22px;
+
+  background:
+
+    rgba(13, 13, 13, 0.96);
+
+  border:
+
+    1px solid rgba(229, 184, 79, 0.65);
+
   box-shadow:
 
-    0 0 35px rgba(231, 185, 79, 0.04),
-
-    inset 0 0 20px rgba(255, 255, 255, 0.015);
+    0 0 35px rgba(229, 184, 79, 0.04);
 
 }
 
-.chat-box input {
-
-  min-width: 0;
+.chat-container input {
 
   flex: 1;
 
+  min-width: 0;
+
   height: 52px;
 
-  border: 0;
+  border: none;
 
   outline: none;
 
@@ -414,31 +478,31 @@ button {
 
   color: white;
 
-  padding: 0 15px;
-
   text-align: right;
 
   direction: rtl;
+
+  padding: 0 15px;
 
   font-size: 15px;
 
 }
 
-.chat-box input::placeholder {
+.chat-container input::placeholder {
 
   color: #666;
 
 }
 
-.mic-btn,
+.voice-button,
 
-.send-btn {
-
-  flex: 0 0 auto;
+.send-button {
 
   width: 50px;
 
   height: 50px;
+
+  flex-shrink: 0;
 
   border-radius: 50%;
 
@@ -450,7 +514,7 @@ button {
 
 }
 
-.mic-btn {
+.voice-button {
 
   background: transparent;
 
@@ -460,45 +524,47 @@ button {
 
 }
 
-.mic-btn.listening {
+.send-button {
 
-  animation: pulse 1s infinite;
+  background:
 
-}
+    linear-gradient(
 
-.send-btn {
+      135deg,
 
-  background: linear-gradient(
+      var(--gold-light),
 
-    135deg,
+      var(--gold)
 
-    var(--gold-light),
+    );
 
-    var(--gold)
+  color: #111;
 
-  );
-
-  color: #090909;
-
-  font-size: 23px;
+  font-size: 22px;
 
   font-weight: 900;
 
-  box-shadow: 0 5px 20px rgba(231, 185, 79, 0.18);
+  box-shadow:
 
-  transition: 0.2s ease;
+    0 5px 20px rgba(229, 184, 79, 0.18);
 
-}
-
-.send-btn:active {
-
-  transform: scale(0.92);
+  transition: 0.2s;
 
 }
 
-/* Response */
+.send-button:active {
 
-.response {
+  transform: scale(0.90);
+
+}
+
+/* =================================
+
+   RESPONSE
+
+================================= */
+
+.ai-response {
 
   margin: 15px 0 20px;
 
@@ -506,37 +572,41 @@ button {
 
   display: flex;
 
-  gap: 12px;
-
   align-items: flex-start;
 
-  border-radius: 17px;
-
-  background: rgba(255, 255, 255, 0.025);
-
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  gap: 12px;
 
   direction: rtl;
 
   text-align: right;
 
+  border-radius: 17px;
+
+  background:
+
+    rgba(255, 255, 255, 0.025);
+
+  border:
+
+    1px solid rgba(255, 255, 255, 0.05);
+
 }
 
-.response-icon {
+.ai-icon {
 
-  width: 34px;
+  width: 35px;
 
-  height: 34px;
+  height: 35px;
 
-  flex: 0 0 34px;
+  flex-shrink: 0;
+
+  border-radius: 50%;
 
   display: flex;
 
-  align-items: center;
-
   justify-content: center;
 
-  border-radius: 50%;
+  align-items: center;
 
   color: #111;
 
@@ -544,31 +614,43 @@ button {
 
 }
 
-.response strong {
+.response-content {
+
+  flex: 1;
+
+}
+
+.response-content strong {
 
   color: var(--gold);
 
 }
 
-.response p {
+.response-content p {
 
-  margin: 4px 0 0;
+  margin-top: 5px;
 
-  color: #c3c3c3;
+  color: #c5c5c5;
 
   font-size: 13px;
 
-  line-height: 1.7;
+  line-height: 1.8;
 
 }
 
-/* Features */
+/* =================================
+
+   FEATURES
+
+================================= */
 
 .features {
 
   display: grid;
 
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns:
+
+    repeat(4, 1fr);
 
   gap: 12px;
 
@@ -576,11 +658,15 @@ button {
 
 .feature-card {
 
-  min-height: 150px;
+  min-height: 145px;
 
-  padding: 20px 10px;
+  padding: 18px 9px;
 
   border-radius: 20px;
+
+  color: white;
+
+  text-align: center;
 
   background:
 
@@ -594,27 +680,37 @@ button {
 
     );
 
-  border: 1px solid rgba(255, 255, 255, 0.045);
+  border:
 
-  color: white;
+    1px solid rgba(255, 255, 255, 0.055);
 
-  text-align: center;
+  transition:
 
-  transition: 0.2s ease;
+    transform 0.2s,
+
+    border-color 0.2s,
+
+    background 0.2s;
 
 }
 
 .feature-card:hover {
 
-  border-color: rgba(231, 185, 79, 0.45);
+  transform: translateY(-3px);
 
-  transform: translateY(-2px);
+  border-color:
+
+    rgba(229, 184, 79, 0.45);
+
+  background:
+
+    rgba(229, 184, 79, 0.045);
 
 }
 
 .feature-card:active {
 
-  transform: scale(0.96);
+  transform: scale(0.95);
 
 }
 
@@ -624,21 +720,29 @@ button {
 
   display: flex;
 
-  align-items: center;
-
   justify-content: center;
+
+  align-items: center;
 
   color: var(--gold);
 
-  font-size: 34px;
+  font-size: 31px;
 
   font-weight: 600;
 
 }
 
+.code-icon {
+
+  font-size: 25px;
+
+}
+
 .feature-card h3 {
 
-  margin: 8px 0 5px;
+  margin-top: 8px;
+
+  margin-bottom: 5px;
 
   font-size: 14px;
 
@@ -648,15 +752,17 @@ button {
 
 .feature-card p {
 
-  margin: 0;
-
   color: #777;
 
   font-size: 11px;
 
 }
 
-/* Pro */
+/* =================================
+
+   PRO
+
+================================= */
 
 .pro-card {
 
@@ -672,61 +778,65 @@ button {
 
   gap: 15px;
 
-  border: 1px solid rgba(231, 185, 79, 0.18);
-
   border-radius: 22px;
 
-  background: rgba(255, 255, 255, 0.018);
+  background:
+
+    rgba(255, 255, 255, 0.018);
+
+  border:
+
+    1px solid rgba(229, 184, 79, 0.20);
 
 }
 
-.crown {
+.pro-icon {
 
   width: 62px;
 
   height: 62px;
 
-  flex: 0 0 62px;
+  flex-shrink: 0;
 
   border-radius: 50%;
 
-  border: 1px solid rgba(231, 185, 79, 0.45);
-
   display: flex;
 
-  align-items: center;
-
   justify-content: center;
+
+  align-items: center;
 
   color: var(--gold);
 
   font-size: 30px;
 
+  border:
+
+    1px solid rgba(229, 184, 79, 0.45);
+
 }
 
-.pro-info {
+.pro-text {
 
   flex: 1;
 
-  direction: rtl;
-
   text-align: right;
+
+  direction: rtl;
 
 }
 
-.pro-info h3 {
-
-  margin: 0 0 5px;
+.pro-text h3 {
 
   color: var(--gold);
 
   font-size: 17px;
 
+  margin-bottom: 5px;
+
 }
 
-.pro-info p {
-
-  margin: 0;
+.pro-text p {
 
   color: #888;
 
@@ -734,21 +844,23 @@ button {
 
 }
 
-#proBtn {
+#proButton {
 
   padding: 13px 20px;
 
   border-radius: 25px;
 
-  background: linear-gradient(
+  background:
 
-    135deg,
+    linear-gradient(
 
-    var(--gold-light),
+      135deg,
 
-    var(--gold)
+      var(--gold-light),
 
-  );
+      var(--gold)
+
+    );
 
   color: #111;
 
@@ -756,13 +868,17 @@ button {
 
 }
 
-/* Bottom Navigation */
+/* =================================
 
-.bottom-nav {
+   BOTTOM NAVIGATION
+
+================================= */
+
+.bottom-navigation {
 
   position: fixed;
 
-  z-index: 20;
+  z-index: 30;
 
   bottom: 0;
 
@@ -772,25 +888,35 @@ button {
 
   min-height: 82px;
 
-  padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
+  padding:
+
+    8px 10px
+
+    calc(8px + env(safe-area-inset-bottom));
 
   display: grid;
 
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns:
 
-  background: rgba(8, 8, 8, 0.96);
+    repeat(5, 1fr);
 
-  backdrop-filter: blur(18px);
+  background:
 
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+    rgba(8, 8, 8, 0.96);
+
+  backdrop-filter: blur(20px);
+
+  border-top:
+
+    1px solid rgba(255, 255, 255, 0.05);
 
 }
 
-.nav-item {
+.nav-button {
 
   background: transparent;
 
-  color: #777;
+  color: #707070;
 
   display: flex;
 
@@ -804,7 +930,7 @@ button {
 
 }
 
-.nav-item span {
+.nav-button span {
 
   font-size: 27px;
 
@@ -812,41 +938,49 @@ button {
 
 }
 
-.nav-item small {
+.nav-button small {
 
   font-size: 10px;
 
 }
 
-.nav-item.active {
+.nav-button.active {
 
   color: var(--gold);
 
 }
 
-.nav-item.active span {
+.nav-button.active span {
 
-  text-shadow: 0 0 15px rgba(231, 185, 79, 0.4);
+  text-shadow:
+
+    0 0 15px rgba(229, 184, 79, 0.5);
 
 }
 
-/* Side menu */
+/* =================================
+
+   OVERLAY
+
+================================= */
 
 .overlay {
 
   position: fixed;
 
-  inset: 0;
-
   z-index: 40;
 
-  background: rgba(0, 0, 0, 0.65);
+  inset: 0;
+
+  background:
+
+    rgba(0, 0, 0, 0.68);
 
   opacity: 0;
 
   visibility: hidden;
 
-  transition: 0.25s ease;
+  transition: 0.25s;
 
   backdrop-filter: blur(3px);
 
@@ -859,6 +993,12 @@ button {
   visibility: visible;
 
 }
+
+/* =================================
+
+   SIDE MENU
+
+================================= */
 
 .side-menu {
 
@@ -876,11 +1016,17 @@ button {
 
   padding: 25px 20px;
 
-  background: #0b0b0b;
+  background:
 
-  border-right: 1px solid rgba(231, 185, 79, 0.18);
+    #0b0b0b;
 
-  transform: translateX(-105%);
+  border-right:
+
+    1px solid rgba(229, 184, 79, 0.20);
+
+  transform:
+
+    translateX(-105%);
 
   transition: 0.3s ease;
 
@@ -888,11 +1034,13 @@ button {
 
 .side-menu.show {
 
-  transform: translateX(0);
+  transform:
+
+    translateX(0);
 
 }
 
-.side-header {
+.side-menu-header {
 
   display: flex;
 
@@ -904,7 +1052,7 @@ button {
 
 }
 
-.side-header > div {
+.side-logo {
 
   font-family: Georgia, serif;
 
@@ -914,31 +1062,33 @@ button {
 
 }
 
-.side-kurd {
+.side-logo span {
 
   color: var(--gold);
 
 }
 
-.side-ai {
+.side-logo b {
 
   color: white;
 
-  margin-left: 5px;
+  margin-left: 4px;
 
 }
 
-#closeMenu {
+.side-menu-header button {
 
   background: transparent;
 
   color: #aaa;
 
-  font-size: 32px;
+  font-size: 34px;
 
 }
 
-.side-user {
+/* User */
+
+.user-card {
 
   display: flex;
 
@@ -952,7 +1102,9 @@ button {
 
   border-radius: 17px;
 
-  background: rgba(255, 255, 255, 0.035);
+  background:
+
+    rgba(255, 255, 255, 0.035);
 
   direction: rtl;
 
@@ -960,7 +1112,7 @@ button {
 
 }
 
-.avatar {
+.user-avatar {
 
   width: 45px;
 
@@ -968,23 +1120,25 @@ button {
 
   border-radius: 50%;
 
-  border: 1px solid var(--gold);
-
-  color: var(--gold);
-
   display: flex;
+
+  justify-content: center;
 
   align-items: center;
 
-  justify-content: center;
+  color: var(--gold);
+
+  border:
+
+    1px solid var(--gold);
 
   font-size: 25px;
 
 }
 
-.side-user p {
+.user-card p {
 
-  margin: 4px 0 0;
+  margin-top: 4px;
 
   color: #777;
 
@@ -992,13 +1146,17 @@ button {
 
 }
 
-.menu-item {
+/* Menu Items */
+
+.side-item {
 
   width: 100%;
 
   height: 55px;
 
   margin-bottom: 5px;
+
+  padding: 0 15px;
 
   border-radius: 13px;
 
@@ -1012,39 +1170,45 @@ button {
 
   gap: 15px;
 
-  padding: 0 15px;
-
   direction: rtl;
-
-  text-align: right;
-
-  font-size: 20px;
-
-}
-
-.menu-item span {
 
   font-size: 14px;
 
+  text-align: right;
+
+  transition: 0.2s;
+
 }
 
-.menu-item:hover {
+.side-item span {
+
+  font-size: 20px;
 
   color: var(--gold);
 
-  background: rgba(231, 185, 79, 0.06);
+}
+
+.side-item:hover {
+
+  background:
+
+    rgba(229, 184, 79, 0.06);
+
+  color: var(--gold);
 
 }
 
-.menu-footer {
+/* Footer */
+
+.side-footer {
 
   position: absolute;
-
-  bottom: 35px;
 
   left: 20px;
 
   right: 20px;
+
+  bottom: 35px;
 
   text-align: center;
 
@@ -1054,53 +1218,79 @@ button {
 
 }
 
-/* Animations */
+/* =================================
+
+   ANIMATION
+
+================================= */
 
 @keyframes pulse {
 
   0% {
 
-    box-shadow: 0 0 0 0 rgba(231, 185, 79, 0.4);
+    box-shadow:
+
+      0 0 0 0 rgba(229, 184, 79, 0.5);
 
   }
 
   70% {
 
-    box-shadow: 0 0 0 12px rgba(231, 185, 79, 0);
+    box-shadow:
+
+      0 0 0 13px rgba(229, 184, 79, 0);
 
   }
 
   100% {
 
-    box-shadow: 0 0 0 0 rgba(231, 185, 79, 0);
+    box-shadow:
+
+      0 0 0 0 rgba(229, 184, 79, 0);
 
   }
 
 }
 
-/* Tablet */
+.voice-button.listening {
+
+  animation: pulse 1s infinite;
+
+}
+
+/* =================================
+
+   MOBILE
+
+================================= */
 
 @media (max-width: 700px) {
 
   .features {
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:
+
+      repeat(2, 1fr);
 
   }
 
   .feature-card {
 
-    min-height: 145px;
+    min-height: 140px;
 
   }
 
 }
 
-/* Small phones */
+/* =================================
+
+   SMALL PHONE
+
+================================= */
 
 @media (max-width: 380px) {
 
-  .main {
+  .header {
 
     padding-left: 14px;
 
@@ -1108,7 +1298,7 @@ button {
 
   }
 
-  .header {
+  .main {
 
     padding-left: 14px;
 
@@ -1124,7 +1314,7 @@ button {
 
   .feature-card {
 
-    min-height: 135px;
+    min-height: 130px;
 
     border-radius: 16px;
 
@@ -1136,25 +1326,31 @@ button {
 
   }
 
+  .feature-card p {
+
+    font-size: 10px;
+
+  }
+
   .pro-card {
 
-    gap: 10px;
+    gap: 9px;
 
     padding: 12px;
 
   }
 
-  .crown {
+  .pro-icon {
 
     width: 50px;
 
     height: 50px;
 
-    flex-basis: 50px;
+    font-size: 24px;
 
   }
 
-  #proBtn {
+  #proButton {
 
     padding: 11px 15px;
 
