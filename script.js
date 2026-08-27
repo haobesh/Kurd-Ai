@@ -1,619 +1,647 @@
-/* ==========================================
+/* =====================================
 
    KURD AI
 
-   Main JavaScript
+   MAIN JAVASCRIPT
 
-========================================== */
+===================================== */
 
-/* =========================
+document.addEventListener("DOMContentLoaded", () => {
 
-   ELEMENTS
+  /* =====================================
 
-========================= */
+     ELEMENTS
 
-const promptInput = document.getElementById("promptInput");
+  ===================================== */
 
-const sendBtn = document.getElementById("sendBtn");
+  const userInput = document.getElementById("userInput");
 
-const micBtn = document.getElementById("micBtn");
+  const sendBtn = document.getElementById("sendBtn");
 
-const responseText = document.getElementById("responseText");
+  const micBtn = document.getElementById("micBtn");
 
-const profileBtn = document.getElementById("profileBtn");
+  const aiGreeting = document.getElementById("aiGreeting");
 
-const menuBtn = document.getElementById("menuBtn");
+  const menuBtn = document.getElementById("menuBtn");
 
-const closeMenu = document.getElementById("closeMenu");
+  const closeMenu = document.getElementById("closeMenu");
 
-const sideMenu = document.getElementById("sideMenu");
+  const menuOverlay = document.getElementById("menuOverlay");
 
-const menuOverlay = document.getElementById("menuOverlay");
+  const profileBtn = document.getElementById("profileBtn");
 
-const modal = document.getElementById("modal");
+  const proBtn = document.getElementById("proBtn");
 
-const modalClose = document.getElementById("modalClose");
+  const modalOverlay = document.getElementById("modalOverlay");
 
-const modalTitle = document.getElementById("modalTitle");
+  const modalClose = document.getElementById("modalClose");
 
-const modalText = document.getElementById("modalText");
+  const modalAction = document.getElementById("modalAction");
 
-const modalAction = document.getElementById("modalAction");
+  const modalTitle = document.getElementById("modalTitle");
 
-const proBtn = document.getElementById("proBtn");
+  const modalText = document.getElementById("modalText");
 
-/* =========================
+  const toast = document.getElementById("toast");
 
-   MODAL
+  /* =====================================
 
-========================= */
+     TOAST
 
-function openModal(title, text) {
+  ===================================== */
+
+  let toastTimer;
+
+  function showToast(message) {
+
+    clearTimeout(toastTimer);
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    toastTimer = setTimeout(() => {
+
+      toast.classList.remove("show");
+
+    }, 2500);
+
+  }
+
+  /* =====================================
+
+     MODAL
+
+  ===================================== */
+
+  function openModal(title, text) {
 
     modalTitle.textContent = title;
 
     modalText.textContent = text;
 
-    modal.classList.add("show");
+    modalOverlay.classList.add("open");
 
-}
+  }
 
-function closeModal() {
+  function closeModal() {
 
-    modal.classList.remove("show");
+    modalOverlay.classList.remove("open");
 
-}
+  }
 
-modalClose.addEventListener("click", closeModal);
+  modalClose.addEventListener("click", closeModal);
 
-modalAction.addEventListener("click", closeModal);
+  modalAction.addEventListener("click", closeModal);
 
-modal.addEventListener("click", function(event) {
+  modalOverlay.addEventListener("click", (event) => {
 
-    if (event.target === modal) {
+    if (event.target === modalOverlay) {
 
-        closeModal();
+      closeModal();
 
     }
 
-});
+  });
 
-/* =========================
+  /* =====================================
 
-   PROFILE
+     MENU
 
-========================= */
+  ===================================== */
 
-profileBtn.addEventListener("click", function() {
+  function openMenu() {
+
+    menuOverlay.classList.add("open");
+
+    document.body.style.overflow = "hidden";
+
+  }
+
+  function closeMenuFunction() {
+
+    menuOverlay.classList.remove("open");
+
+    document.body.style.overflow = "";
+
+  }
+
+  menuBtn.addEventListener("click", openMenu);
+
+  closeMenu.addEventListener("click", closeMenuFunction);
+
+  menuOverlay.addEventListener("click", (event) => {
+
+    if (event.target === menuOverlay) {
+
+      closeMenuFunction();
+
+    }
+
+  });
+
+  /* =====================================
+
+     PROFILE
+
+  ===================================== */
+
+  profileBtn.addEventListener("click", () => {
 
     openModal(
 
-        "Kurd AI",
+      "Kurd AI",
 
-        "پڕۆفایلی بەکارهێنەر لەم شوێنەدا دەبێت. دەتوانیت دواتر سیستەمی چوونەژوورەوە زیاد بکەیت."
+      "پڕۆفایلی بەکارهێنەر لە وەشانی داهاتوودا زیاد دەکرێت."
 
     );
 
-});
+  });
 
-/* =========================
+  /* =====================================
 
-   SIDE MENU
+     SEND MESSAGE
 
-========================= */
+  ===================================== */
 
-function openMenu() {
+  function sendMessage() {
 
-    sideMenu.classList.add("open");
+    const text = userInput.value.trim();
 
-    menuOverlay.classList.add("show");
+    if (!text) {
 
-}
+      showToast("تکایە پرسیارەکەت بنووسە ✍️");
 
-function closeSideMenu() {
+      userInput.focus();
 
-    sideMenu.classList.remove("open");
-
-    menuOverlay.classList.remove("show");
-
-}
-
-menuBtn.addEventListener("click", openMenu);
-
-closeMenu.addEventListener("click", closeSideMenu);
-
-menuOverlay.addEventListener("click", closeSideMenu);
-
-/* =========================
-
-   SEND MESSAGE
-
-========================= */
-
-function sendMessage() {
-
-    const question = promptInput.value.trim();
-
-    if (question === "") {
-
-        openModal(
-
-            "Kurd AI",
-
-            "تکایە پرسیارەکەت لە خانەی پرسیار بنووسە."
-
-        );
-
-        promptInput.focus();
-
-        return;
+      return;
 
     }
 
-    responseText.textContent = "خەریکی بیرکردنەوەین...";
+    aiGreeting.textContent =
 
-    sendBtn.disabled = true;
+      "چاوەڕێ بکە... Kurd AI وەڵامەکەت ئامادە دەکات ✨";
 
-    setTimeout(function() {
+    userInput.value = "";
 
-        let answer =
+    setTimeout(() => {
 
-            "سوپاس بۆ پرسیارەکەت 🌟\n\n" +
+      const answer = generateDemoAnswer(text);
 
-            "ئەمە وەڵامی نموونەیی Kurd AI ـە. " +
+      aiGreeting.textContent = answer;
 
-            "لە داهاتوودا دەتوانین API ـی AI بە ئەپەکەوە ببەستین.";
+    }, 700);
 
-        const lower = question.toLowerCase();
+  }
 
-        if (
+  sendBtn.addEventListener("click", sendMessage);
 
-            question.includes("سڵاو") ||
-
-            question.includes("سلاو")
-
-        ) {
-
-            answer =
-
-                "سڵاو 👋 بەخێربێیت بۆ Kurd AI. چ شتێک دەتوانم بۆت بکەم؟";
-
-        }
-
-        else if (
-
-            question.includes("کورد") ||
-
-            question.includes("کوردستان")
-
-        ) {
-
-            answer =
-
-                "بەخێربێیت ❤️ بژی کورد و کوردستان. Kurd AI بۆ خزمەتکردنی بەکارهێنەرانی کوردە.";
-
-        }
-
-        else if (
-
-            lower.includes("hello") ||
-
-            lower.includes("hi")
-
-        ) {
-
-            answer =
-
-                "Hello 👋 بەخێربێیت بۆ Kurd AI.";
-
-        }
-
-        responseText.textContent = answer;
-
-        sendBtn.disabled = false;
-
-        promptInput.value = "";
-
-    }, 900);
-
-}
-
-sendBtn.addEventListener("click", sendMessage);
-
-/* =========================
-
-   ENTER KEY
-
-========================= */
-
-promptInput.addEventListener("keydown", function(event) {
+  userInput.addEventListener("keydown", (event) => {
 
     if (event.key === "Enter") {
 
-        event.preventDefault();
+      event.preventDefault();
 
-        sendMessage();
+      sendMessage();
 
     }
 
-});
+  });
 
-/* =========================
+  /* =====================================
 
-   MICROPHONE
+     DEMO AI ANSWERS
 
-========================= */
+  ===================================== */
 
-let recognition = null;
+  function generateDemoAnswer(text) {
 
-const SpeechRecognition =
+    const lower = text.toLowerCase();
+
+    if (
+
+      lower.includes("سڵاو") ||
+
+      lower.includes("slaw")
+
+    ) {
+
+      return "سڵاو 👋 بەخێربێیت! من Kurd AI ـم، چۆن بتوانم یارمەتیت بدەم؟";
+
+    }
+
+    if (
+
+      lower.includes("کورد") ||
+
+      lower.includes("کوردستان")
+
+    ) {
+
+      return "بەخێربێیت ❤️ بژی کورد و کوردستان. Kurd AI بۆ خزمەتکردن بە زمانی کوردی دروست دەکرێت.";
+
+    }
+
+    if (
+
+      lower.includes("چییە") ||
+
+      lower.includes("کێیە")
+
+    ) {
+
+      return "من Kurd AI ـم؛ دەستیارێکی زیرەکی کوردی بۆ گفتوگۆ، نووسین، وەرگێڕان و فێربوون.";
+
+    }
+
+    return (
+
+      "پرسیارەکەت وەرگیرا ✨ " +
+
+      "ئەمە وەشانی تاقیکردنەوەی Kurd AI ـە. " +
+
+      "لە وەشانی داهاتوودا AI ـی ڕاستەقینە بە API ـەوە پەیوەست دەکەین."
+
+    );
+
+  }
+
+  /* =====================================
+
+     QUICK ACTIONS
+
+  ===================================== */
+
+  const actionCards =
+
+    document.querySelectorAll(".action-card");
+
+  const actionData = {
+
+    chat: {
+
+      title: "گفتوگۆ",
+
+      placeholder: "چی دەتەوێت لەگەڵ Kurd AI گفتوگۆ بکەیت؟",
+
+      message: "ئێستا دەتوانیت پرسیارەکەت لێرە بنووسیت 💬"
+
+    },
+
+    image: {
+
+      title: "دروستکردنی وێنە",
+
+      placeholder: "وێنەیەک کە دەتەوێت دروست بکرێت بنووسە...",
+
+      message: "ناوی وێنەکەت بنووسە 🎨"
+
+    },
+
+    write: {
+
+      title: "نووسین",
+
+      placeholder: "دەربارەی چی دەتەوێت بنووسم؟",
+
+      message: "بابەتەکەت بنووسە ✍️"
+
+    },
+
+    translate: {
+
+      title: "وەرگێڕان",
+
+      placeholder: "دەقەکەت لێرە دابنێ...",
+
+      message: "دەقەکەت بنێرە بۆ وەرگێڕان 🌐"
+
+    },
+
+    read: {
+
+      title: "پەرتەی خوێندن",
+
+      placeholder: "چی دەتەوێت فێری ببیت؟",
+
+      message: "بابەتێک هەڵبژێرە بۆ فێربوون 📖"
+
+    },
+
+    code: {
+
+      title: "کۆدنوسین",
+
+      placeholder: "کۆدەکەت یان پرسیارەکەت بنووسە...",
+
+      message: "ئامادەم بۆ یارمەتیدان لە کۆد 💻"
+
+    },
+
+    voice: {
+
+      title: "دەنگ",
+
+      placeholder: "دوگمەی مایکروفۆن دابگرە...",
+
+      message: "دەتوانیت بە دەنگ قسە بکەیت 🎙️"
+
+    },
+
+    more: {
+
+      title: "تایبەتمەندی زیاتر",
+
+      placeholder: "تایبەتمەندییەک هەڵبژێرە...",
+
+      message: "تایبەتمەندییە زیاترەکان بەردەوام زیاد دەکرێن ⭐"
+
+    }
+
+  };
+
+  actionCards.forEach((card) => {
+
+    card.addEventListener("click", () => {
+
+      const action =
+
+        card.dataset.action;
+
+      const data =
+
+        actionData[action];
+
+      if (!data) return;
+
+      userInput.placeholder =
+
+        data.placeholder;
+
+      aiGreeting.textContent =
+
+        data.message;
+
+      userInput.focus();
+
+      showToast(data.title);
+
+    });
+
+  });
+
+  /* =====================================
+
+     MICROPHONE
+
+  ===================================== */
+
+  let recognition = null;
+
+  const SpeechRecognition =
 
     window.SpeechRecognition ||
 
     window.webkitSpeechRecognition;
 
-if (SpeechRecognition) {
+  if (SpeechRecognition) {
 
-    recognition = new SpeechRecognition();
+    recognition =
 
-    recognition.lang = "ku";
+      new SpeechRecognition();
+
+    recognition.lang = "ku-IQ";
 
     recognition.interimResults = false;
 
     recognition.continuous = false;
 
-    recognition.onstart = function() {
+    recognition.onstart = () => {
 
-        micBtn.textContent = "🔴";
+      micBtn.textContent = "🔴";
 
-    };
-
-    recognition.onend = function() {
-
-        micBtn.textContent = "🎙️";
+      showToast("گوێم لێتە... قسە بکە 🎙️");
 
     };
 
-    recognition.onresult = function(event) {
+    recognition.onresult = (event) => {
 
-        const text =
+      const transcript =
 
-            event.results[0][0].transcript;
+        event.results[0][0].transcript;
 
-        promptInput.value = text;
+      userInput.value =
 
-    };
+        transcript;
 
-    recognition.onerror = function() {
-
-        micBtn.textContent = "🎙️";
-
-        openModal(
-
-            "دەنگ",
-
-            "نەتوانرا دەنگ تۆمار بکرێت. تکایە ڕێگە بە مایکروفۆن بدە."
-
-        );
+      micBtn.textContent = "🎙️";
 
     };
 
-    micBtn.addEventListener("click", function() {
+    recognition.onerror = () => {
+
+      micBtn.textContent = "🎙️";
+
+      showToast(
+
+        "نەتوانرا دەنگ وەربگیرێت."
+
+      );
+
+    };
+
+    recognition.onend = () => {
+
+      micBtn.textContent = "🎙️";
+
+    };
+
+    micBtn.addEventListener("click", () => {
+
+      try {
 
         recognition.start();
 
-    });
+      } catch (error) {
 
-} else {
+        showToast(
 
-    micBtn.addEventListener("click", function() {
-
-        openModal(
-
-            "دەنگ",
-
-            "ئەم وێبگەڕە پشتگیری ناسینەوەی دەنگ ناکات."
+          "مایکروفۆن پێشتر چالاکە."
 
         );
 
-    });
-
-}
-
-/* =========================
-
-   TOOL BUTTONS
-
-========================= */
-
-const toolCards =
-
-    document.querySelectorAll(".tool-card");
-
-toolCards.forEach(function(card) {
-
-    card.addEventListener("click", function() {
-
-        const tool =
-
-            card.getAttribute("data-tool");
-
-        if (tool === "chat") {
-
-            openModal(
-
-                "گفتوگۆ",
-
-                "لێرە دەتوانیت لەگەڵ Kurd AI گفتوگۆ بکەیت."
-
-            );
-
-            promptInput.focus();
-
-        }
-
-        else if (tool === "image") {
-
-            openModal(
-
-                "دروستکردنی وێنە",
-
-                "بەشی دروستکردنی وێنە دواتر زیاد دەکرێت."
-
-            );
-
-        }
-
-        else if (tool === "writer") {
-
-            openModal(
-
-                "نووسین",
-
-                "Kurd AI دەتوانێت لە نووسینی دەق و نامە و پۆست یارمەتیت بدات."
-
-            );
-
-        }
-
-        else if (tool === "translate") {
-
-            openModal(
-
-                "وەرگێڕان",
-
-                "بەشی وەرگێڕان دەتوانێت دواتر بە شێوەی تەواو زیاد بکرێت."
-
-            );
-
-        }
-
-        else if (tool === "learn") {
-
-            openModal(
-
-                "یارمەتی خوێندن",
-
-                "لێرە دەتوانیت پرسیاری خوێندنت لە Kurd AI بکەیت."
-
-            );
-
-        }
-
-        else if (tool === "code") {
-
-            openModal(
-
-                "کۆدنوسین",
-
-                "Kurd AI دەتوانێت لە HTML، CSS، JavaScript و کۆدەکانی تر یارمەتیت بدات."
-
-            );
-
-        }
-
-        else if (tool === "voice") {
-
-            if (recognition) {
-
-                recognition.start();
-
-            } else {
-
-                openModal(
-
-                    "دەنگ",
-
-                    "ناسینەوەی دەنگ لەسەر ئەم وێبگەڕە بەردەست نییە."
-
-                );
-
-            }
-
-        }
-
-        else if (tool === "more") {
-
-            openModal(
-
-                "زۆرتر",
-
-                "تایبەتمەندییە زیاترەکانی Kurd AI لە وەشانی داهاتوودا زیاد دەکرێن."
-
-            );
-
-        }
+      }
 
     });
 
-});
+  } else {
 
-/* =========================
+    micBtn.addEventListener("click", () => {
 
-   BOTTOM NAV
+      showToast(
 
-========================= */
+        "ئەم وێبگەڕە پشتگیری ناسینەوەی دەنگ ناکات."
 
-const navItems =
-
-    document.querySelectorAll(".nav-item");
-
-function activatePage(page) {
-
-    navItems.forEach(function(item) {
-
-        item.classList.remove("active");
-
-        if (item.getAttribute("data-page") === page) {
-
-            item.classList.add("active");
-
-        }
+      );
 
     });
 
-    if (page === "home") {
+  }
 
-        window.scrollTo({
+  /* =====================================
 
-            top: 0,
+     PRO
 
-            behavior: "smooth"
+  ===================================== */
 
-        });
-
-    }
-
-    else if (page === "history") {
-
-        openModal(
-
-            "مێژوو",
-
-            "هیچ مێژوویەکی گفتوگۆ لە ئێستادا نییە."
-
-        );
-
-    }
-
-    else if (page === "favorites") {
-
-        openModal(
-
-            "دڵخوازەکان",
-
-            "هیچ شتێک لە دڵخوازەکانت نییە."
-
-        );
-
-    }
-
-    else if (page === "projects") {
-
-        openModal(
-
-            "پڕۆژەکان",
-
-            "پڕۆژەکانت لەم شوێنەدا دەردەکەون."
-
-        );
-
-    }
-
-    else if (page === "settings") {
-
-        openModal(
-
-            "ڕێکخستن",
-
-            "بەشی ڕێکخستنەکانی Kurd AI لەم شوێنەدا دەبێت."
-
-        );
-
-    }
-
-}
-
-navItems.forEach(function(item) {
-
-    item.addEventListener("click", function() {
-
-        activatePage(
-
-            item.getAttribute("data-page")
-
-        );
-
-    });
-
-});
-
-/* =========================
-
-   SIDE MENU NAVIGATION
-
-========================= */
-
-const menuItems =
-
-    document.querySelectorAll(".menu-item");
-
-menuItems.forEach(function(item) {
-
-    item.addEventListener("click", function() {
-
-        const page =
-
-            item.getAttribute("data-page");
-
-        closeSideMenu();
-
-        activatePage(page);
-
-    });
-
-});
-
-/* =========================
-
-   PRO BUTTON
-
-========================= */
-
-proBtn.addEventListener("click", function() {
+  proBtn.addEventListener("click", () => {
 
     openModal(
 
-        "Kurd AI Pro",
+      "Kurd AI Pro 👑",
 
-        "وەشانی Pro لە داهاتوودا تایبەتمەندییە زیاتر و بەهێزترەکانی دەبێت."
+      "وەشانی Pro تایبەتمەندییە زیاتر و بەهێزترەکان دەخاتە بەردەست."
 
     );
 
-});
+  });
 
-/* =========================
+  /* =====================================
 
-   ESC KEY
+     BOTTOM NAVIGATION
 
-========================= */
+  ===================================== */
 
-document.addEventListener("keydown", function(event) {
+  const navItems =
 
-    if (event.key === "Escape") {
+    document.querySelectorAll(".nav-item");
 
-        closeSideMenu();
+  const menuItems =
 
-        closeModal();
+    document.querySelectorAll(".menu-item");
+
+  function selectSection(section) {
+
+    navItems.forEach((item) => {
+
+      item.classList.toggle(
+
+        "active",
+
+        item.dataset.section === section
+
+      );
+
+    });
+
+    if (section === "home") {
+
+      window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+      });
+
+      return;
 
     }
 
+    const sectionNames = {
+
+      history:
+
+        "مێژوو",
+
+      favorites:
+
+        "دڵخوازەکان",
+
+      projects:
+
+        "پڕۆژەکان",
+
+      settings:
+
+        "ڕێکخستن"
+
+    };
+
+    const title =
+
+      sectionNames[section] ||
+
+      "Kurd AI";
+
+    openModal(
+
+      title,
+
+      "ئەم بەشە لە وەشانی داهاتوودا بە تەواوی چالاک دەکرێت."
+
+    );
+
+  }
+
+  navItems.forEach((item) => {
+
+    item.addEventListener("click", () => {
+
+      selectSection(
+
+        item.dataset.section
+
+      );
+
+    });
+
+  });
+
+  menuItems.forEach((item) => {
+
+    item.addEventListener("click", () => {
+
+      selectSection(
+
+        item.dataset.section
+
+      );
+
+      closeMenuFunction();
+
+    });
+
+  });
+
+  /* =====================================
+
+     ESC KEY
+
+  ===================================== */
+
+  document.addEventListener("keydown", (event) => {
+
+    if (event.key === "Escape") {
+
+      closeMenuFunction();
+
+      closeModal();
+
+    }
+
+  });
+
+  /* =====================================
+
+     START
+
+  ===================================== */
+
+  console.log(
+
+    "Kurd AI started successfully."
+
+  );
+
 });
-
-/* =========================
-
-   INITIAL
-
-========================= */
-
-console.log("Kurd AI loaded successfully 🚀");
